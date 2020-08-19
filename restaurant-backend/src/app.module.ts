@@ -17,7 +17,7 @@ import { AuthMiddleware } from './auth/middleware/auth.middleware';
     ConfigModule.forRoot(),
     // Mongoose globális beállítása, paraméterben a connection URL van, a szükséges adatok környezeti változókból jönnek
     MongooseModule.forRoot(
-      `mongodb://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}`,
+      `mongodb+srv://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`,
     ),
     UserModule,
   ],
