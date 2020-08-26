@@ -24,9 +24,13 @@ export class RoleService {
         return await this.roleModel.find().exec();
     }
 
-    /* public findOne(id:string): Promise<any> {
-        this.roleModel.findOne({ _id: id }).then((result) => {
-            return {result.role};
-        });
-    } */
+    public async findById(id:string): Promise<any> {
+        const result = await this.roleModel.findOne({ _id:id });
+        return result.role;
+
+        /* return {
+            rolename: result.role, 
+            roleId: result._id
+        }; */
+    }
 }

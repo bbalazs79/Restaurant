@@ -24,9 +24,9 @@ export class RoleController {
         return await this.roleService.findAll();
     }
 
-    /* @Get(':id')
+    @Get(':id')
     @UseGuards(AuthGuard)
-    async findOne(@Param('id') id: string): Promise<RoleDto> {
-        return await this.roleService.findOne(id);
-    } */
+    async findById(@Param('id') id: string): Promise<RoleDto> {
+        return await this.roleService.findById(id);
+    }
 }
