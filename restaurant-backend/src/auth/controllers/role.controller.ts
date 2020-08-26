@@ -2,6 +2,7 @@ import { Controller, Post, Body, ConflictException, Get, Param, UseGuards } from
 import { RoleDto } from 'dtos/role.dto';
 import { RoleService } from '../services/role.service';
 import { AuthGuard } from '../guards/auth.guard';
+import { Roles } from '../decorators/role.decorator';
 
 @Controller('role')
 export class RoleController {
@@ -20,12 +21,14 @@ export class RoleController {
 
     @Get('')
     @UseGuards(AuthGuard)
+    @Roles('admin')
     async findAll(): Promise<RoleDto> {
         return await this.roleService.findAll();
     }
 
     @Get(':id')
     @UseGuards(AuthGuard)
+    @Roles('admin')
     async findById(@Param('id') id: string): Promise<RoleDto> {
         return await this.roleService.findById(id);
     }
