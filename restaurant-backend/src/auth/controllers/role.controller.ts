@@ -3,6 +3,7 @@ import { RoleDto } from 'dtos/role.dto';
 import { RoleService } from '../services/role.service';
 import { AuthGuard } from '../guards/auth.guard';
 import { Roles } from '../decorators/role.decorator';
+import { RolesGuard } from '../guards/roles.guard';
 
 @Controller('role')
 export class RoleController {
@@ -27,7 +28,7 @@ export class RoleController {
     }
 
     @Get(':id')
-    @UseGuards(AuthGuard)
+    @UseGuards(AuthGuard, RolesGuard)
     @Roles('admin')
     async findById(@Param('id') id: string): Promise<RoleDto> {
         return await this.roleService.findById(id);
