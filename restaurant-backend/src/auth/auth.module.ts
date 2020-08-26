@@ -4,6 +4,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './schemas/user.schema';
 import { AuthService } from './services/auth.service';
 import { UserToken, UserTokenSchema } from './schemas/user-token.schema';
+import { Role, RoleSchema } from './schemas/role.schema';
+import { RoleController } from './controllers/role.controller';
+import { RoleService } from './services/role.service';
 
 // Authentikációt reprezentáló modul.
 @Module({
@@ -14,10 +17,11 @@ import { UserToken, UserTokenSchema } from './schemas/user-token.schema';
     MongooseModule.forFeature([
       { name: User.name, schema: UserSchema },
       { name: UserToken.name, schema: UserTokenSchema },
+      { name: Role.name, schema: RoleSchema },
     ]),
   ],
-  controllers: [AuthController],
-  providers: [AuthService],
-  exports: [AuthService]
+  controllers: [AuthController, RoleController],
+  providers: [AuthService, RoleService],
+  exports: [AuthService, RoleService]
 })
 export class AuthModule { }

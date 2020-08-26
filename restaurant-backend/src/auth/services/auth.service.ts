@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { UserToken } from 'src/auth/schemas/user-token.schema';
 import { v4 as uuidv4 } from 'uuid';
 import * as moment from 'moment';
+import { Role } from '../schemas/role.schema';
 
 /**
  * Authentikációval kapcsolatos service.
@@ -17,6 +18,7 @@ export class AuthService {
   constructor(
     @InjectModel(User.name) private userModel: Model<User>,
     @InjectModel(UserToken.name) private userTokenModel: Model<UserToken>,
+    @InjectModel(Role.name) private roleModel: Model<Role>,
   ) { }
 
   /**
@@ -84,7 +86,8 @@ export class AuthService {
       return false;
     }
 
-    const newUser = new this.userModel({ username, password });
+    const role = await (await this.roleModel.findOne({ role: "user" }))._id;
+    const newUser = new this.userModel({ username, password, role });
     // Két felkiáltójel:
     // A save() az elmentett objektummal tér vissza.
     // De mivel a TS itt booleant vár el a visszatérési típus miatt, ezért ki kell belőle kényszeríteni, hogy 'true' legyen.
@@ -97,4 +100,6 @@ export class AuthService {
     // deletedCount: hányat sikerült törölni (itt remélhetőleg 1-et)
     return !!(await this.userTokenModel.deleteOne({ value: token })).deletedCount;
   }
+
+  
 }
