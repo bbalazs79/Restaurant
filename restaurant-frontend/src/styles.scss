@@ -30,3 +30,10 @@ $restaurant-frontend-theme: mat-light-theme($restaurant-frontend-primary, $resta
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.white-icon{
+    color: white !important;
+}
+.white-btn{
+    color: white;
+}

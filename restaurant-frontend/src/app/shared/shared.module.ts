@@ -106,7 +106,7 @@ const materialModules = [
     FormsModule,
     ReactiveFormsModule,
     ...materialModules,
-    HeaderComponent
+    HeaderComponent,
   ]
 })
 export class SharedModule { }
