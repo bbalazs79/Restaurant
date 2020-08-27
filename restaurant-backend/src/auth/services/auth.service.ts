@@ -81,13 +81,42 @@ export class AuthService {
     }
   }
 
-  public async register(username: string, password: string): Promise<boolean> {
+  public async registerUser(
+    username: string,
+    password: string,
+    first_name: string,
+    last_name: string,
+    email: string,
+    phone_number: number,
+    zip_code: number,
+    city: string,
+    street: string,
+    house_number: number,
+    storey: number,
+    door_number: number,
+    doorbell: number,
+    ): Promise<boolean> {
     if (await this.userModel.findOne({ username })) {
       return false;
     }
 
     const role = await (await this.roleModel.findOne({ role: "user" }))._id;
-    const newUser = new this.userModel({ username, password, role });
+    const newUser = new this.userModel({ 
+      username, 
+      password, 
+      first_name,
+      last_name,
+      email, 
+      phone_number, 
+      zip_code, 
+      city, 
+      street, 
+      house_number,
+      storey,
+      door_number,
+      doorbell, 
+      role, 
+    });
     // Két felkiáltójel:
     // A save() az elmentett objektummal tér vissza.
     // De mivel a TS itt booleant vár el a visszatérési típus miatt, ezért ki kell belőle kényszeríteni, hogy 'true' legyen.

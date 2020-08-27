@@ -1,5 +1,5 @@
 import { Controller, Post, Body, ConflictException, Get, Param, UseGuards } from '@nestjs/common';
-import { RoleDto } from 'dtos/role.dto';
+import { RoleDto } from 'dtos/auth/role.dto';
 import { RoleService } from '../services/role.service';
 import { AuthGuard } from '../guards/auth.guard';
 import { Roles } from '../decorators/role.decorator';
@@ -7,7 +7,6 @@ import { RolesGuard } from '../guards/roles.guard';
 
 @Controller('role')
 export class RoleController {
-
     constructor(private roleService: RoleService) { }
 
     @Post('')

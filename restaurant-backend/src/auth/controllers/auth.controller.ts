@@ -13,6 +13,7 @@ import { AuthService } from '../services/auth.service';
 import { LoginResponseDto } from 'dtos/auth/login-response.dto';
 import { AuthGuard } from '../guards/auth.guard';
 import { extractAuthorizationHeader } from '../utils/extract-authorization';
+import { RegistrationDto } from 'dtos/auth/registration.dto';
 
 /**
  * Authentikációs végpontok.
@@ -45,11 +46,22 @@ export class AuthController {
   }
 
   // POST /auth/register
-  @Post('register')
-  public async register(@Body() authDto: BasicAuthDto): Promise<void> {
-    const result = await this.authService.register(
-      authDto.username,
-      authDto.password,
+  @Post('registerUser')
+  public async registerUser(@Body() regDto: RegistrationDto): Promise<void> {
+    const result = await this.authService.registerUser(
+      regDto.username,
+      regDto.password,
+      regDto.first_name,
+      regDto.last_name,
+      regDto.email,
+      regDto.phone_number,
+      regDto.zip_code,
+      regDto.city,
+      regDto.street,
+      regDto.house_number,
+      regDto.storey,
+      regDto.door_number,
+      regDto.doorbell,
     );
     if (!result) {
       throw new ConflictException();
