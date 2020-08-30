@@ -28,6 +28,8 @@
               "src/assets"
             ],
             "styles": [
+              "src/theme.scss",
+              "src/common.scss",
               "src/styles.scss"
             ],
             "scripts": []

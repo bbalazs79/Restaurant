@@ -5,7 +5,9 @@ import { Model } from 'mongoose';
 import { UserToken } from 'src/auth/schemas/user-token.schema';
 import { v4 as uuidv4 } from 'uuid';
 import * as moment from 'moment';
+import * as bcrypt from 'bcrypt';
 import { Role } from '../schemas/role.schema';
+import { hashPassword } from '../utils/hash-password';
 
 /**
  * Authentikációval kapcsolatos service.
@@ -57,10 +59,9 @@ export class AuthService {
     const user = await this.userModel
       .findOne({
         username,
-        password,
       });
 
-    if (user) {
+    if (user && await bcrypt.compare(password, user.password)) {
       // Egyszerű UUID alapú token generálás.
       const token = uuidv4();
       // Új objektum létrehozása a DB-be való mentéshez.
@@ -101,9 +102,10 @@ export class AuthService {
     }
 
     const role = await (await this.roleModel.findOne({ role: "user" }))._id;
-    const newUser = new this.userModel({ 
+    const hashedPassword = await hashPassword(password);
+    const newUser = new this.userModel({
+      password: hashedPassword,
       username, 
-      password, 
       first_name,
       last_name,
       email, 
@@ -129,6 +131,4 @@ export class AuthService {
     // deletedCount: hányat sikerült törölni (itt remélhetőleg 1-et)
     return !!(await this.userTokenModel.deleteOne({ value: token })).deletedCount;
   }
-
-  
 }

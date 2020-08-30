@@ -1,4 +1,4 @@
-import { Module, RequestMethod, MiddlewareConsumer } from '@nestjs/common';
+import { Module, RequestMethod, MiddlewareConsumer, ValidationPipe } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
@@ -6,6 +6,8 @@ import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserModule } from './user/user.module';
 import { AuthMiddleware } from './auth/middleware/auth.middleware';
+import { ProductModule } from './product/product.module';
+import { APP_PIPE } from '@nestjs/core';
 
 // Fő app modul, globális dolgokat tartalmaz
 @Module({
@@ -20,9 +22,16 @@ import { AuthMiddleware } from './auth/middleware/auth.middleware';
       `mongodb+srv://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`,
     ),
     UserModule,
+    ProductModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_PIPE,
+      useClass: ValidationPipe,
+    },
+  ],
 })
 export class AppModule {
   // Globális Middleware konfiguráció

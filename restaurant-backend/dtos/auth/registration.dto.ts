@@ -1,8 +1,17 @@
-export interface RegistrationDto {
+import { IsNotEmpty, IsEmail } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+
+export class RegistrationDto {
+    @IsNotEmpty()
+    @ApiProperty()
     username: string;
+
+
     password: string;
     first_name:string;
     last_name: string;
+
+    @IsEmail()
     email: string;
     phone_number: number;
     zip_code: number;

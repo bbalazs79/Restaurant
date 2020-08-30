@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ApiClient } from 'src/app/shared/utils/api-client';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  public isLoggedIn$ = new BehaviorSubject(false);
 
   constructor(private apiClient: ApiClient) { }
 
@@ -26,9 +28,17 @@ export class AuthService {
       password
     })
     .pipe(
+      tap(() => this.isLoggedIn$.next(true)),
       map((response) => {
         return response.token;
       }),
     );
+  }
+
+  public logout(): Observable<void> {
+    return this.apiClient.get<void>('/auth/logout')
+    .pipe(
+      tap(() => this.isLoggedIn$.next(false)),
+    )
   }
 }

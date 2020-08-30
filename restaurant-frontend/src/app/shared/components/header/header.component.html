@@ -5,13 +5,17 @@
         </div>
         <div class="right-content">
 
-            <button class="white-btn"  #loginButton mat-button>Bejelentkezés</button>
+            <button mat-raised-button color="accent">Teszt</button>
 
-            <button class="white-btn"  #anonimUserButton mat-button [matMenuTriggerFor]="aboveMenu" [hidden]="true">Anonim Felhasználó</button>
-            <mat-menu class="user-menu" #aboveMenu="matMenu" yPosition="below">
-                <button class="white-btn" mat-menu-item>Beállítások<mat-icon class="white-icon" aria-hidden="false" aria-label="Setting">settings</mat-icon></button>
-                <button class="white-btn" mat-menu-item>Kijelentkezés<mat-icon class="white-icon" aria-hidden="false" aria-label="LogOut">login</mat-icon></button>
-            </mat-menu>
+            <button class="white-btn" *ngIf="!(isLoggedIn$ | async); else loggedInTemplate"  #loginButton mat-button>Bejelentkezés</button>
+
+            <ng-template #loggedInTemplate>
+                <button class="white-btn"  #anonimUserButton mat-button [matMenuTriggerFor]="aboveMenu" [hidden]="true">Anonim Felhasználó</button>
+                <mat-menu class="user-menu" #aboveMenu="matMenu" yPosition="below">
+                    <button class="white-btn" mat-menu-item>Beállítások<mat-icon class="white-icon" aria-hidden="false" aria-label="Setting">settings</mat-icon></button>
+                    <button class="white-btn" mat-menu-item>Kijelentkezés<mat-icon class="white-icon" aria-hidden="false" aria-label="LogOut">login</mat-icon></button>
+                </mat-menu>
+            </ng-template>
 
             <button mat-stroked-button><mat-icon class="white-icon" aria-hidden="false" aria-label="Cart">shopping_cart</mat-icon></button>
         </div>

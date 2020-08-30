@@ -19,7 +19,8 @@ export class UserController {
     // ezért minden modulban, ahol használni akarjuk, be kell tenni az AuthModule-t az
     // adott modul importjaiba!
     @Get("getCurrentUser")
-    @UseGuards(AuthGuard)
+    @UseGuards(AuthGuard, RolesGuard)
+    @Roles('admin')
     public async getCurrentUser(@CurrentUser() currentUser: User): Promise<UserDto> {
         return {
             username: currentUser.username,
@@ -41,7 +42,7 @@ export class UserController {
     @Get("getUsers")
     @UseGuards(AuthGuard, RolesGuard)
     @Roles('admin')
-    public async getUsers(@CurrentUser() currentUser: User): Promise<User[]> {
+    public async getUsers(): Promise<User[]> {
         return await this.userService.findAllUsers();
     }
 }
