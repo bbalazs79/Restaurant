@@ -11,8 +11,7 @@ import { extractAuthorizationHeader } from '../utils/extract-authorization';
  */
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
-
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
   use(req: any, res: any, next: () => void) {
     // Kiszedjük az Authorization header-t a request-ből (formája: "Bearer <Token>").
@@ -24,12 +23,13 @@ export class AuthMiddleware implements NestMiddleware {
         // A then-be bekerült kód akkor fut le, ha végzett a Promise.
         // Lehet catch és finally ága is.
         // next() -> a Middleware-hez köthető, meg kell mindenképp hívni, hogy a további Middleware-ek lefussanak.
-        this.authService.findUserByToken(authorization.token)
-          .then((user) => {
+        this.authService
+          .findUserByToken(authorization.token)
+          .then(user => {
             req.user = user;
           })
           .finally(() => next());
-      break;
+        break;
       default:
         next();
     }

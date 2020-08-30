@@ -23,7 +23,7 @@ import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
  */
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
   // POST /auth/login
   // @Body(): Ha ezzel felannotáljuk a paramétert, akkor a request body tartalma kerül a paraméterbe.
@@ -106,6 +106,4 @@ export class AuthController {
       throw new UnauthorizedException();
     }
   }
-
-  
 }

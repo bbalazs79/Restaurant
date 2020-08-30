@@ -9,7 +9,8 @@ import { Product, ProductSchema } from './shemas/product.schema';
 import { Ingredient, IngredientSchema } from './shemas/ingredient.schema';
 
 @Module({
-  imports: [AuthModule,
+  imports: [
+    AuthModule,
     MongooseModule.forFeature([
       { name: Product.name, schema: ProductSchema },
       { name: Ingredient.name, schema: IngredientSchema },
@@ -17,6 +18,6 @@ import { Ingredient, IngredientSchema } from './shemas/ingredient.schema';
   ],
   providers: [ProductService, IngredientService],
   controllers: [ProductController, IngredientController],
-  exports: [ProductService, IngredientService]
+  exports: [ProductService, IngredientService],
 })
 export class ProductModule {}

@@ -5,13 +5,11 @@ import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class UserService {
-    constructor(
-        @InjectModel(User.name) private userModel: Model<User>,
-      ) { }
+  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
-    public async findAllUsers(): Promise<User[]> {
-        const result = await this.userModel.find().exec();
+  public async findAllUsers(): Promise<User[]> {
+    const result = await this.userModel.find().exec();
 
-        return result;
-    }
+    return result;
+  }
 }

@@ -7,7 +7,7 @@ export interface IAuthorization {
 export function extractAuthorizationHeader(request: any): IAuthorization {
   const result = {
     scheme: null,
-    token: null
+    token: null,
   };
 
   if (request) {

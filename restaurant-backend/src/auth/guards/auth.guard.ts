@@ -7,9 +7,7 @@ import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
  */
 @Injectable()
 export class AuthGuard implements CanActivate {
-  public canActivate(
-    context: ExecutionContext,
-  ): boolean {
+  public canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
     // Itt szintén boolean-nel kell visszatérni
     // Ha false, akkor az ezzel a Guard-al ellátott végpont 403-al tér vissza.

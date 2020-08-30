@@ -11,7 +11,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   // 3000-es port
-  
 
   const options = new DocumentBuilder()
     .setTitle('Restaurant API')

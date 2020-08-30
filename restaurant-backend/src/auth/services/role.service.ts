@@ -5,30 +5,28 @@ import { Role } from '../schemas/role.schema';
 
 @Injectable()
 export class RoleService {
-    constructor(
-        @InjectModel(Role.name) private roleModel: Model<Role>,
-      ) { }
+  constructor(@InjectModel(Role.name) private roleModel: Model<Role>) {}
 
-    public async add(role: string): Promise<boolean> {
-        if (await this.roleModel.findOne({ role })) {
-          return false;
-        }
-    
-        const newRole = new this.roleModel({role });
-        return !!newRole.save();
+  public async add(role: string): Promise<boolean> {
+    if (await this.roleModel.findOne({ role })) {
+      return false;
     }
 
-    public async findAll(): Promise<any> {
-        return await this.roleModel.find().exec();
-    }
+    const newRole = new this.roleModel({ role });
+    return !!newRole.save();
+  }
 
-    public async findById(id:string): Promise<any> {
-        const result = await this.roleModel.findOne({ _id:id });
-        return result.role;
+  public async findAll(): Promise<any> {
+    return await this.roleModel.find().exec();
+  }
 
-        /* return {
+  public async findById(id: string): Promise<any> {
+    const result = await this.roleModel.findOne({ _id: id });
+    return result.role;
+
+    /* return {
             rolename: result.role, 
             roleId: result._id
         }; */
-    }
+  }
 }

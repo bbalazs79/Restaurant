@@ -11,14 +11,11 @@ import { Allergens } from '../enums/allergene.enum';
  */
 @Schema()
 export class Ingredient extends Document {
-    
-
   @Prop({ required: true })
   name: string;
 
-  @Prop({  })
+  @Prop({})
   allergen: Allergens[];
-  
 }
 
 export const IngredientSchema = SchemaFactory.createForClass(Ingredient);

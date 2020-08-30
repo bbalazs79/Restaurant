@@ -14,14 +14,13 @@ import { hashPassword } from '../utils/hash-password';
  */
 @Injectable()
 export class AuthService {
-
   // A DB, és az egyes sémák eléréséhez Model-eket kell beinjektálnunk.
   // Ezeken keresztül érjük el az egyes MongoDB kollekciókat.
   constructor(
     @InjectModel(User.name) private userModel: Model<User>,
     @InjectModel(UserToken.name) private userTokenModel: Model<UserToken>,
     @InjectModel(Role.name) private roleModel: Model<Role>,
-  ) { }
+  ) {}
 
   /**
    * User keresése token alapján.
@@ -31,7 +30,6 @@ export class AuthService {
   // Miért fontos? mert vannak olyan műveleteink, amikre nem kapunk azonnal eredményt (pl. DB-ből való lehúzás MongoDB esetén)
   // Ha az async jelzővel ellátjuk a metódust, akkor a Promise<> generikus típusában megadott típussal kell visszatérni (itt: User)
   public async findUserByToken(token: string): Promise<User> {
-
     // findOne pontosan egy eredményt ad vissza.
     // await: bevárjuk a végrehajtást, mivel ez is egy Promise,
     // azaz a végrehajtás itt csak akkor ugrik tovább, ha ez végzett.
@@ -39,7 +37,7 @@ export class AuthService {
     const userToken = await this.userTokenModel
       .findOne({
         value: token,
-        expirationDate: { $gt: new Date() }
+        expirationDate: { $gt: new Date() },
       })
       // populate: A kapcsolt objektumot (relációs DB-nél entitást ugye) is behúzzuk.
       // Mit? A 'user'-t, mert az a kapcsolt mező neve.
@@ -56,12 +54,11 @@ export class AuthService {
     username: string,
     password: string,
   ): Promise<string | false> {
-    const user = await this.userModel
-      .findOne({
-        username,
-      });
+    const user = await this.userModel.findOne({
+      username,
+    });
 
-    if (user && await bcrypt.compare(password, user.password)) {
+    if (user && (await bcrypt.compare(password, user.password))) {
       // Egyszerű UUID alapú token generálás.
       const token = uuidv4();
       // Új objektum létrehozása a DB-be való mentéshez.
@@ -72,7 +69,7 @@ export class AuthService {
         expirationDate: moment()
           .utc()
           .add(process.env.TOKEN_EXPIRATION_MINUTES, 'minutes')
-          .toDate()
+          .toDate(),
       });
       // Objektum mentése a DB-be.
       userToken.save();
@@ -96,28 +93,28 @@ export class AuthService {
     storey: number,
     door_number: number,
     doorbell: number,
-    ): Promise<boolean> {
+  ): Promise<boolean> {
     if (await this.userModel.findOne({ username })) {
       return false;
     }
 
-    const role = await (await this.roleModel.findOne({ role: "user" }))._id;
+    const role = await (await this.roleModel.findOne({ role: 'user' }))._id;
     const hashedPassword = await hashPassword(password);
     const newUser = new this.userModel({
       password: hashedPassword,
-      username, 
+      username,
       first_name,
       last_name,
-      email, 
-      phone_number, 
-      zip_code, 
-      city, 
-      street, 
+      email,
+      phone_number,
+      zip_code,
+      city,
+      street,
       house_number,
       storey,
       door_number,
-      doorbell, 
-      role, 
+      doorbell,
+      role,
     });
     // Két felkiáltójel:
     // A save() az elmentett objektummal tér vissza.
@@ -129,6 +126,7 @@ export class AuthService {
   public async logout(token: string): Promise<boolean> {
     // Objektum törlése a DB-ből
     // deletedCount: hányat sikerült törölni (itt remélhetőleg 1-et)
-    return !!(await this.userTokenModel.deleteOne({ value: token })).deletedCount;
+    return !!(await this.userTokenModel.deleteOne({ value: token }))
+      .deletedCount;
   }
 }

@@ -11,7 +11,6 @@ import { Role } from './role.schema';
  */
 @Schema()
 export class User extends Document {
-
   // Az egyes propertyket @Prop() decoratorral kell ellátni.
   // Többféle paraméter van (típus, required, ref, stb.)
   @Prop({ required: true })
@@ -32,28 +31,28 @@ export class User extends Document {
   @Prop({ required: true })
   phone_number: number;
 
-  @Prop({  })
+  @Prop({})
   zip_code: number;
 
-  @Prop({ })
+  @Prop({})
   city: string;
 
-  @Prop({  })
+  @Prop({})
   street: string;
 
-  @Prop({  })
+  @Prop({})
   house_number: number;
 
-  @Prop({  })
+  @Prop({})
   storey: number;
 
-  @Prop({ })
+  @Prop({})
   door_number: number;
 
-  @Prop({  })
+  @Prop({})
   doorbell: number;
 
-  @Prop({type: NativeSchema.Types.ObjectId, required: true , ref: 'Role'})
+  @Prop({ type: NativeSchema.Types.ObjectId, required: true, ref: 'Role' })
   role: Role;
 }
 

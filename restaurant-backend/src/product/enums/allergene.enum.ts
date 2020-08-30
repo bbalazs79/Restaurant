@@ -1,3 +1,3 @@
-export enum Allergens{
-    LACTOSE = 'laktóz'
+export enum Allergens {
+  LACTOSE = 'laktóz',
 }
