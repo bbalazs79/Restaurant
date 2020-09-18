@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Ingredient } from '../shemas/ingredient.schema';
+import { Ingredient } from '../schemas/ingredient.schema';
 import { Model } from 'mongoose';
 import { Allergens } from '../enums/allergene.enum';
 

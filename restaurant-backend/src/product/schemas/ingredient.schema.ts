@@ -1,4 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Document, Schema as NativeSchema } from 'mongoose';
 import { Allergens } from '../enums/allergene.enum';
 

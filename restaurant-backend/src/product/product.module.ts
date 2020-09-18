@@ -5,8 +5,8 @@ import { AuthModule } from 'src/auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { IngredientService } from './services/ingredient.service';
 import { IngredientController } from './controllers/ingredient.controller';
-import { Product, ProductSchema } from './shemas/product.schema';
-import { Ingredient, IngredientSchema } from './shemas/ingredient.schema';
+import { Product, ProductSchema } from './schemas/product.schema';
+import { Ingredient, IngredientSchema } from './schemas/ingredient.schema';
 
 @Module({
   imports: [

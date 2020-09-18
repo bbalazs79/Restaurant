@@ -29,7 +29,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run format"
+      "pre-commit": "pretty-quick --staged"
     }
   },
   "dependencies": {
@@ -68,6 +68,7 @@
     "jest": "26.0.1",
     "lint-staged": "^10.2.13",
     "prettier": "^1.19.1",
+    "pretty-quick": "^3.0.0",
     "start-server-webpack-plugin": "^2.2.5",
     "supertest": "^4.0.2",
     "ts-jest": "26.1.0",

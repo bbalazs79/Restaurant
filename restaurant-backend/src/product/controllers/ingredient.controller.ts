@@ -12,7 +12,7 @@ import { Roles } from 'src/auth/decorators/role.decorator';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { IngredientDto } from 'dtos/product/ingredient.dto';
-import { Ingredient } from '../shemas/ingredient.schema';
+import { Ingredient } from '../schemas/ingredient.schema';
 
 @Controller('ingredient')
 export class IngredientController {

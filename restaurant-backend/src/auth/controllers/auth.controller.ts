@@ -16,7 +16,7 @@ import { LoginResponseDto } from 'dtos/auth/login-response.dto';
 import { AuthGuard } from '../guards/auth.guard';
 import { extractAuthorizationHeader } from '../utils/extract-authorization';
 import { RegistrationDto } from 'dtos/auth/registration.dto';
-import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 
 /**
  * Authentikációs végpontok.

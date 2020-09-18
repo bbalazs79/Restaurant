@@ -13,11 +13,15 @@ import { UserModule } from './user/user.module';
 import { AuthMiddleware } from './auth/middleware/auth.middleware';
 import { ProductModule } from './product/product.module';
 import { APP_PIPE } from '@nestjs/core';
+import { OrderModule } from './order/order.module';
 
 // Fő app modul, globális dolgokat tartalmaz
 @Module({
   imports: [
     AuthModule,
+    UserModule,
+    ProductModule,
+    OrderModule,
     // Konfigurációhoz, lehetővé teszi, hogy környezeti változókból olvassunk be bizonyos paramétereket
     // Jelenleg ezek a .env fájlban vannak (de éles környezetben ez nem így megy)
     // pl. process.env.DATABASE_URL
@@ -26,8 +30,6 @@ import { APP_PIPE } from '@nestjs/core';
     MongooseModule.forRoot(
       `mongodb+srv://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`,
     ),
-    UserModule,
-    ProductModule,
   ],
   controllers: [AppController],
   providers: [

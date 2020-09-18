@@ -22,8 +22,9 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   await app.listen(3000);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const configService = app.get(ConfigService);
-  await app.listen(configService.get<number>('port'));
+  /*  await app.listen(configService.get<number>('port')); */
 
   // Hot Reloading a moduloknak, ha kell
   if (module.hot) {
