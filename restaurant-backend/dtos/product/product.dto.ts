@@ -1,7 +1,7 @@
-import { Ingredient } from 'src/product/schemas/ingredient.schema';
+import { IngredientDto } from './ingredient.dto';
 
-export interface ProductDto extends Document {
+export interface ProductDto {
   name: string;
   price: number;
-  ingredients: Ingredient[];
+  ingredients: IngredientDto[];
 }

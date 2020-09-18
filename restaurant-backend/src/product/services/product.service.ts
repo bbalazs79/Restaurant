@@ -4,6 +4,7 @@ import { Product } from '../schemas/product.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { ProductDto } from 'dtos/product/product.dto';
 import { Ingredient } from '../schemas/ingredient.schema';
+import { IngredientDto } from 'dtos/product/ingredient.dto';
 
 @Injectable()
 export class ProductService {
@@ -31,7 +32,7 @@ export class ProductService {
   public async add(product: ProductDto): Promise<boolean> {
     const productName: string = product.name;
     const productPrice: number = product.price;
-    const productIngredients: Ingredient[] = product.ingredients;
+    const productIngredients: IngredientDto[] = product.ingredients;
 
     /* if (await this.productModel.findOne({ productName })) {
       return false;
