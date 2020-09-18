@@ -17,7 +17,7 @@ export class Product extends Document {
   @Prop({ required: true })
   price: number;
 
-  @Prop({ type: NativeSchema.Types.ObjectId })
+  @Prop({ type: Array<NativeSchema.Types.ObjectId>(), ref: 'ingredient' })
   ingredients: Ingredient[];
 }
 

@@ -28,7 +28,6 @@ export class ProductService {
    * @param name
    * product neve
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public async add(product: ProductDto): Promise<boolean> {
     const productName: string = product.name;
     const productPrice: number = product.price;

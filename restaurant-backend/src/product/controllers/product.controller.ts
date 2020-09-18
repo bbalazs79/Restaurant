@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {
   Controller,
   Post,
@@ -9,20 +8,19 @@ import {
   Get,
 } from '@nestjs/common';
 import { ProductService } from '../services/product.service';
-/* import { Roles } from 'src/auth/decorators/role.decorator';
-import { AuthGuard } from 'src/auth/guards/auth.guard';
-import { RolesGuard } from 'src/auth/guards/roles.guard'; */
 import { Product } from '../schemas/product.schema';
 import { ProductDto } from 'dtos/product/product.dto';
+import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Roles } from 'src/auth/decorators/role.decorator';
 
 @Controller('product')
 export class ProductController {
   constructor(private productService: ProductService) {}
 
   @Post()
-  /* @UseGuards(AuthGuard, RolesGuard)
-  @Roles('admin') */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  @UseGuards(AuthGuard, RolesGuard)
+  @Roles('admin')
   public async add(@Body() productDto: ProductDto): Promise<void> {
     const result = await this.productService.add(productDto);
 
@@ -32,13 +30,13 @@ export class ProductController {
   }
 
   @Get()
-  /* @UseGuards(AuthGuard) */
+  @UseGuards(AuthGuard)
   async findAll(): Promise<Product[]> {
     return await this.productService.findAll();
   }
 
   @Get(':id')
-  /* @UseGuards(AuthGuard) */
+  @UseGuards(AuthGuard)
   async findById(@Param('id') id: string): Promise<Product> {
     return await this.productService.findById(id);
   }
