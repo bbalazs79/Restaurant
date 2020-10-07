@@ -1,1 +1,158 @@
-<p>registration-page works!</p>
+<mat-vertical-stepper linear #registrationStepper>
+  <mat-step [stepControl]="authenticationGroup">
+    <form [formGroup]="authenticationGroup">
+      <ng-template matStepLabel>Bejelentkezéshez szükséges adatok</ng-template>
+      <mat-form-field>
+        <mat-label>Felhasználónév</mat-label>
+        <input
+          matInput
+          formControlName="userNameValidator"
+          placeholder="felhasználónév"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          formControlName="emailValidator"
+          placeholder="email@email.hu"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Jelszó</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="passwordValidator"
+          placeholder="***"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Jelszó Újra</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="passwordAgainValidator"
+          placeholder="***"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Következő</button>
+      </div>
+    </form>
+  </mat-step>
+  <!-- [editable]="isEditable" -->
+  <mat-step [stepControl]="personalGroup">
+    <form [formGroup]="personalGroup">
+      <ng-template matStepLabel>Profil Adatok</ng-template>
+      <mat-form-field>
+        <mat-label>Vezetéknév</mat-label>
+        <input
+          matInput
+          formControlName="firstNameValidator"
+          placeholder="Vezetéknév"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Keresztnév</mat-label>
+        <input
+          matInput
+          formControlName="lastNameValidator"
+          placeholder="Keresztnév"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Telefonszám</mat-label>
+        <input
+          matInput
+          formControlName="phoneNumberValidator"
+          placeholder="Keresztnév"
+          required
+        />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Vissza</button>
+        <button mat-button matStepperNext>Következő</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="locationGroup">
+    <form [formGroup]="locationGroup">
+      <ng-template matStepLabel>Szállítási adatok</ng-template>
+      <mat-form-field>
+        <mat-label>Irányítószám</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="zipCodeValidator"
+          placeholder="3300"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Város</mat-label>
+        <input
+          matInput
+          formControlName="cityValidators"
+          placeholder="Eger"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Utca</mat-label>
+        <input
+          matInput
+          formControlName="streetValidators"
+          placeholder="József Attila"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Házszám</mat-label>
+        <input
+          matInput
+          formControlName="houseNumberValidators"
+          placeholder="201/E"
+          required
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Emelet</mat-label>
+        <input matInput formControlName="storeyValidators" placeholder="5" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Ajtó</mat-label>
+        <input
+          matInput
+          formControlName="doorNumberValidators"
+          placeholder="43"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Kapucsengő</mat-label>
+        <input matInput formControlName="doorBellValidators" placeholder="11" />
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Vissza</button>
+        <button mat-button matStepperNext (onClick)="registrate()">
+          Következő
+        </button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Kész</ng-template>
+    <p>Köszönjük ,hogy regisztrált.</p>
+    <div>
+      <button mat-button matStepperPrevious>Vissza</button>
+      <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
