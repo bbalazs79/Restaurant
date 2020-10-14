@@ -1,0 +1,11 @@
+.logo.container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 5% 0 5%;
+
+  hr.divider {
+    flex: 1;
+    border-style: solid;
+  }
+}

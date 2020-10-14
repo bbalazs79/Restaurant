@@ -1,20 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
-import { SharedModule } from '../shared/shared.module';
-import { MainRoutingModule } from './main-routing.module';
-import { HomeComponent } from './components/home/home.component';
-
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { NavigationBarComponent } from "./components/navigation-bar/navigation-bar.component";
+import { SharedModule } from "../shared/shared.module";
+import { MainRoutingModule } from "./main-routing.module";
+import { HomeComponent } from "./components/home/home.component";
+import { LogoComponent } from "./logo/logo.component";
+import { HeroComponent } from "./hero/hero.component";
 
 @NgModule({
-  declarations: [NavigationBarComponent, HomeComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    MainRoutingModule,
+  declarations: [
+    NavigationBarComponent,
+    HomeComponent,
+    LogoComponent,
+    HeroComponent
   ],
-  exports: [
-  ]
+  imports: [CommonModule, SharedModule, MainRoutingModule],
+  exports: []
 })
-export class MainModule { }
+export class MainModule {}
