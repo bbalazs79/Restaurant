@@ -1,15 +1,37 @@
-@import './common.scss';
+@import "./common.scss";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-.white-icon{
-    color: white !important;
+html,
+body {
+  height: 100%;
 }
-.white-btn{
-    color: white;
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.white-icon {
+  color: white !important;
+}
+.white-btn {
+  color: white;
 }
 
 .secondary-color {
-    color: $app-secondary-color;
+  color: $app-secondary-color;
+}
+
+.left-boarder {
+  border-left: 1px solid $app-background-color;
+}
+
+.top-border {
+  border-top: 1px solid $app-background-color;
+}
+
+.right-border {
+  border-right: 1px solid $app-background-color;
+}
+
+.app-body {
+  background-color: $app-background-color;
 }
