@@ -1,6 +1,8 @@
 import { NUMBER_TYPE } from "@angular/compiler/src/output/output_ast";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { UserService } from "../../services/user.service";
+import { RegistrationDto } from "../interfaces/registrate.dto";
 
 @Component({
   selector: "app-registration-page",
@@ -12,7 +14,10 @@ export class RegistrationPageComponent implements OnInit {
   personalGroup: FormGroup;
   locationGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.authenticationGroup = this._formBuilder.group({
@@ -39,7 +44,24 @@ export class RegistrationPageComponent implements OnInit {
     });
   }
 
-  registrate() {
-    console.log(this.authenticationGroup);
+  onClickRegistrate() {
+    const params: RegistrationDto = {
+      username: this.authenticationGroup.value.userNameValidator,
+      password: this.authenticationGroup.value.passwordValidator,
+      first_name: this.personalGroup.value.firstNameValidator,
+      last_name: this.personalGroup.value.lastNameValidator,
+      email: this.authenticationGroup.value.emailValidator,
+      phone_number: this.personalGroup.value.phoneNumberValidator,
+      zip_code: this.locationGroup.value.zipCodeValidator,
+      city: this.locationGroup.value.cityValidators,
+      street: this.locationGroup.value.streetValidators,
+      house_number: this.locationGroup.value.houseNumberValidators,
+      storey: this.locationGroup.value.storeyValidators,
+      door_number: this.locationGroup.value.doorNumberValidators,
+      doorbell: this.locationGroup.value.doorBellValidators
+    };
+
+    this.userService.register(params);
+    console.log("fut!");
   }
 }
