@@ -55,7 +55,7 @@ export class AuthController {
   }
 
   // POST /auth/register
-  @Post('registerUser')
+  @Post('register')
   @ApiOperation({ summary: 'Register a new user.' })
   @ApiResponse({
     status: HttpStatus.OK,
@@ -67,6 +67,8 @@ export class AuthController {
   })
   @HttpCode(HttpStatus.OK)
   public async registerUser(@Body() regDto: RegistrationDto): Promise<void> {
+    console.log(regDto);
+    console.log('fut');
     const result = await this.authService.registerUser(
       regDto.username,
       regDto.password,
