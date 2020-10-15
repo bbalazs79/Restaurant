@@ -45,7 +45,6 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HeaderComponent } from "./components/header/header.component";
-import { AppRoutingModule } from "../app-routing.module";
 import { SharedRoutingModule } from "./shared-routing.module";
 
 const materialModules = [
@@ -98,7 +97,6 @@ const materialModules = [
   declarations: [HeaderComponent],
   imports: [
     SharedRoutingModule,
-    AppRoutingModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
