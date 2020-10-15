@@ -45,22 +45,22 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   onClickRegistrate() {
-    this.userService
-      .register(
-        this.authenticationGroup.value.userNameValidator,
-        this.authenticationGroup.value.passwordValidator,
-        this.personalGroup.value.firstNameValidator,
-        this.personalGroup.value.lastNameValidator,
-        this.authenticationGroup.value.emailValidator,
-        this.locationGroup.value.cityValidators,
-        this.locationGroup.value.doorNumberValidators,
-        this.locationGroup.value.doorBellValidators,
-        this.locationGroup.value.houseNumberValidators,
-        this.personalGroup.value.phoneNumberValidator,
-        this.locationGroup.value.storeyValidators,
-        this.locationGroup.value.streetValidators,
-        this.locationGroup.value.zipCodeValidator
-      )
-      .subscribe();
+    const params: RegistrationDto = {
+      username: this.authenticationGroup.value.userNameValidator,
+      password: this.authenticationGroup.value.passwordValidator,
+      first_name: this.personalGroup.value.firstNameValidator,
+      last_name: this.personalGroup.value.lastNameValidator,
+      email: this.authenticationGroup.value.emailValidator,
+      phone_number: this.personalGroup.value.phoneNumberValidator,
+      zip_code: this.locationGroup.value.zipCodeValidator,
+      city: this.locationGroup.value.cityValidators,
+      street: this.locationGroup.value.streetValidators,
+      house_number: this.locationGroup.value.houseNumberValidators,
+      storey: this.locationGroup.value.storeyValidators,
+      door_number: this.locationGroup.value.doorNumberValidators,
+      doorbell: this.locationGroup.value.doorBellValidators
+    };
+
+    this.userService.register(params).subscribe();
   }
 }
