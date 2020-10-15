@@ -68,7 +68,6 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   public async registerUser(@Body() regDto: RegistrationDto): Promise<void> {
     console.log(regDto);
-    console.log('fut');
     const result = await this.authService.registerUser(
       regDto.username,
       regDto.password,
@@ -103,6 +102,7 @@ export class AuthController {
   })
   @HttpCode(HttpStatus.OK)
   public async logout(@Request() request: Request): Promise<void> {
+    console.log('fut!');
     const authorization = extractAuthorizationHeader(request);
     if (!this.authService.logout(authorization.token)) {
       throw new UnauthorizedException();

@@ -12,7 +12,12 @@
       </button>
     </div>
     <div class="right-content">
-      <button mat-stroked-button class="white-btn" routerLink="/registration">
+      <button
+        mat-stroked-button
+        class="white-btn"
+        routerLink="/registration"
+        *ngIf="!(isLoggedIn$ | async)"
+      >
         Regisztráció
       </button>
 
@@ -46,7 +51,7 @@
               >settings</mat-icon
             >
           </button>
-          <button class="white-btn" mat-menu-item>
+          <button (click)="onClickLogout()" class="white-btn" mat-menu-item>
             Kijelentkezés<mat-icon
               class="white-icon"
               aria-hidden="false"

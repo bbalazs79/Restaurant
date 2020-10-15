@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatMenuTrigger } from "@angular/material/menu";
-import { MatButton } from "@angular/material/button";
 import { AuthService } from "src/app/auth/services/auth.service";
 import { BehaviorSubject } from "rxjs";
 
@@ -18,5 +16,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  navigateToRegistration() {}
+  onClickLogout() {
+    this.authService.logout().subscribe();
+    this.isLoggedIn$ = this.authService.isLoggedIn$;
+  }
 }
