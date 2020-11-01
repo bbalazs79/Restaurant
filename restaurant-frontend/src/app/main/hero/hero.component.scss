@@ -1,134 +1,36 @@
-section.hero-section {
-  position: relative;
+@import "../../../common.scss";
+
+.hero-body {
   height: 400px;
-}
 
-.carousel-container {
-  height: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-}
+  .gfg {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+  }
 
-section.hero-section .item {
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-}
+  .logo {
+    text-align: center;
+    position: absolute;
+    font-size: 18px;
+    top: 50px;
+    left: 27%;
+    color: white;
+    height: 400px;
+  }
 
-section.hero-section .current-description {
-  position: absolute;
-  z-index: 1;
-  height: 100%;
-  width: 300px;
-  padding: 10px 30px;
-  background-color: rgba(255, 255, 255, 0.85);
-  white-space: initial;
-}
+  .current-description {
+    position: absolute;
+    z-index: 1;
+    height: 380px;
+    width: 300px;
+    padding: 10px 30px;
+    background-color: rgba(255, 255, 255, 0.85);
+    white-space: initial;
 
-section.hero-section .current-description.animate * {
-  animation: fade-transition 1s;
-}
-
-section.hero-section .item .item-description {
-  /* display: none; */
-}
-
-section.hero-section .carousel-controls {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  padding: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-section.hero-section .carousel-controls .offset {
-  flex: 1;
-}
-
-section.hero-section .carousel-controls .offset:last-of-type {
-  text-align: right;
-}
-
-section.hero-section .carousel-controls .icon-button {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: 1px solid white;
-}
-
-section.hero-section .carousel-controls .indicators {
-  display: flex;
-  flex-direction: row;
-  margin-left: 15px;
-  margin-right: 15px;
-}
-
-section.hero-section .carousel-controls .indicators .indicator {
-  background-color: black;
-  border: 1px solid #dedede;
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  transition: background-color var(--app-default-transition);
-}
-
-section.hero-section
-  .carousel-controls
-  .indicators
-  .indicator:not(:first-of-type) {
-  margin-left: 10px;
-}
-
-section.hero-section .carousel-controls .indicators .indicator.active {
-  background-color: white;
-}
-
-section.hero-section .carousel-controls .carousel-toggle {
-  justify-self: flex-end;
-}
-
-section.hero-section footer {
-  width: 100%;
-}
-
-.top-gradient,
-.bottom-gradient {
-  position: absolute;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-}
-
-.top-gradient {
-  height: 40px;
-  background: -moz-linear-gradient(
-    top,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  ); /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    top,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  ); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0) 100%
-  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
-}
-
-section.hero-section .item {
-  display: inline-block;
-  height: 100%;
-  width: 100%;
-}
-
-img.full-size-cover {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    h1 {
+      font-family: $app-secondary-font;
+      font-size: 2.5em;
+    }
+  }
 }

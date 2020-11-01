@@ -6,7 +6,9 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  /* font-family: Roboto, "Helvetica Neue", sans-serif; */
+  --app-primary-font: "Roboto", sans-serif;
+  --app-secondary-font: "Great Vibes", cursive;
 }
 
 .white-icon {
