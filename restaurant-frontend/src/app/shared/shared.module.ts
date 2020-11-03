@@ -44,8 +44,6 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HeaderComponent } from "./components/header/header.component";
-import { SharedRoutingModule } from "./shared-routing.module";
 
 const materialModules = [
   A11yModule,
@@ -94,9 +92,8 @@ const materialModules = [
 ];
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [],
   imports: [
-    SharedRoutingModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
@@ -107,8 +104,7 @@ const materialModules = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ...materialModules,
-    HeaderComponent
+    ...materialModules
   ]
 })
 export class SharedModule {}

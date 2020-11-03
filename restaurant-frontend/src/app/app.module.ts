@@ -7,9 +7,10 @@ import { SharedModule } from "./shared/shared.module";
 import { AuthModule } from "./auth/auth.module";
 import { MainModule } from "./main/main.module";
 import { OrderModule } from "./order/order.module";
+import { HeaderComponent } from "./main/components/header/header.component";
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
