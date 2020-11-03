@@ -1,0 +1,35 @@
+<div class="table-container">
+  <table class="table-food">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Termék</th>
+        <th>Ár</th>
+        <th>Hozzávalók</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of this.foods">
+        <td class="image-column"><img src="{{ item.src }}" /></td>
+        <td class="name-column">{{ item.name }}</td>
+        <td class="price-column">{{ item.price }} Ft</td>
+        <td class="ingredient-column">
+          <label
+            class="ingredient-label"
+            *ngFor="let ingredient of item.ingredients"
+          >
+            {{ ingredient.name }} <br />
+          </label>
+        </td>
+        <td class="cart-column">
+          <button mat-raised-button color="primary">
+            <mat-icon class="white-icon" aria-hidden="false" aria-label="Cart"
+              >shopping_cart</mat-icon
+            >
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
