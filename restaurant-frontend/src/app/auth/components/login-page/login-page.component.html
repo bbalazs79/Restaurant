@@ -1,15 +1,26 @@
-<form [formGroup]="loginForm">
-    <mat-form-field>
-        <mat-label>Felhasználónév</mat-label>
-        <input matInput type="text" formControlName="username"/>
-        <mat-error *ngIf="loginForm.get('username').errors?.required">A mező kitöltése kötelező!</mat-error>
-        <mat-error *ngIf="loginForm.get('username').errors?.minlength">Legalább 3 karakternek kell lennie!</mat-error>
+<div class="login-group">
+  <form [formGroup]="loginForm" class="flex-col">
+    <mat-form-field class="form-field">
+      <mat-label class="mat-label">Felhasználónév</mat-label>
+      <input matInput type="text" formControlName="username" />
+      <mat-error *ngIf="loginForm.get('username').errors?.required"
+        >A mező kitöltése kötelező!</mat-error
+      >
+      <mat-error *ngIf="loginForm.get('username').errors?.minlength"
+        >Legalább 3 karakternek kell lennie!</mat-error
+      >
     </mat-form-field>
     <mat-form-field style="margin-left: 10px">
-        <mat-label>Jelszó</mat-label>
-        <input matInput type="password" formControlName="password"/>
+      <mat-label class="mat-label">Jelszó</mat-label>
+      <input matInput type="password" formControlName="password" />
     </mat-form-field>
-</form>
-<button mat-raised-button color="warn" (click)="onClickLogin()" [disabled]="loginForm.invalid">
+  </form>
+  <button
+    mat-raised-button
+    color="accent"
+    (click)="onClickLogin()"
+    [disabled]="loginForm.invalid"
+  >
     Bejelentkezés
-</button>
+  </button>
+</div>

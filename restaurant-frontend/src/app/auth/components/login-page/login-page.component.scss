@@ -1,0 +1,20 @@
+.login-group {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-label {
+  color: black;
+}
+
+.form-field {
+  text-align: center;
+}
