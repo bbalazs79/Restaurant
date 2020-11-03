@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { LoginPageComponent } from "../auth/components/login-page/login-page.component";
 import { RegistrationPageComponent } from "../auth/components/registration-page/registration-page.component";
 import { HomeComponent } from "../main/components/home/home.component";
+import { MainComponent } from "../main/components/main/main.component";
 
 const routes: Routes = [
   {
@@ -14,8 +15,14 @@ const routes: Routes = [
     path: "registration"
   },
   {
-    component: HomeComponent,
-    path: ""
+    component: MainComponent,
+    path: "",
+    children: [
+      {
+        component: HomeComponent,
+        path: ""
+      }
+    ]
   }
 ];
 
