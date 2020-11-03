@@ -4,17 +4,18 @@ import { NavigationBarComponent } from "./components/navigation-bar/navigation-b
 import { SharedModule } from "../shared/shared.module";
 import { MainRoutingModule } from "./main-routing.module";
 import { HomeComponent } from "./components/home/home.component";
-import { LogoComponent } from "./logo/logo.component";
-import { HeroComponent } from "./hero/hero.component";
 import { MainComponent } from "./components/main/main.component";
+import { LogoComponent } from "./components/logo/logo.component";
+import { HeroComponent } from "./components/hero/hero.component";
 
 @NgModule({
   declarations: [
     NavigationBarComponent,
     HomeComponent,
     LogoComponent,
-    HeroComponent,
-    MainComponent
+    HomeComponent,
+    MainComponent,
+    HeroComponent
   ],
   imports: [CommonModule, SharedModule, MainRoutingModule],
   exports: []

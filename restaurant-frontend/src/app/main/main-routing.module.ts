@@ -1,5 +1,5 @@
 import { Routes, RouterModule } from "@angular/router";
-import { Component, NgModule } from "@angular/core";
+import { NgModule } from "@angular/core";
 import { HomeComponent } from "./components/home/home.component";
 import { MainComponent } from "./components/main/main.component";
 import { CarteComponent } from "../order/components/carte/carte.component";
