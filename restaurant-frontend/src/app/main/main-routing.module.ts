@@ -14,8 +14,9 @@ const routes: Routes = [
         path: ""
       },
       {
-        component: CarteComponent,
-        path: "carte"
+        path: "carte",
+        loadChildren: () =>
+          import("../order/order.module").then(m => m.OrderModule)
       }
     ]
   }

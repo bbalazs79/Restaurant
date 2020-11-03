@@ -7,10 +7,12 @@ import { HomeComponent } from "./components/home/home.component";
 import { MainComponent } from "./components/main/main.component";
 import { LogoComponent } from "./components/logo/logo.component";
 import { HeroComponent } from "./components/hero/hero.component";
+import { HeaderComponent } from "./components/header/header.component";
 
 @NgModule({
   declarations: [
     NavigationBarComponent,
+    HeaderComponent,
     HomeComponent,
     LogoComponent,
     HomeComponent,
@@ -18,6 +20,6 @@ import { HeroComponent } from "./components/hero/hero.component";
     HeroComponent
   ],
   imports: [CommonModule, SharedModule, MainRoutingModule],
-  exports: []
+  exports: [HeaderComponent]
 })
 export class MainModule {}

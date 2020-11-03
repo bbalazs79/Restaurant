@@ -15,7 +15,7 @@
       <button
         mat-stroked-button
         class="white-btn"
-        routerLink="/registration"
+        routerLink="/auth/registration"
         *ngIf="!(isLoggedIn$ | async)"
       >
         Regisztráció
@@ -26,7 +26,7 @@
         *ngIf="!(isLoggedIn$ | async); else loggedInTemplate"
         #loginButton
         mat-button
-        routerLink="/login"
+        routerLink="/auth/login"
       >
         Bejelentkezés
       </button>

@@ -6,7 +6,7 @@ import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations: [CarteComponent],
-  imports: [SharedModule, OrderRoutingModule, CommonModule],
-  exports: [CarteComponent]
+  imports: [CommonModule, OrderRoutingModule, SharedModule],
+  exports: []
 })
 export class OrderModule {}

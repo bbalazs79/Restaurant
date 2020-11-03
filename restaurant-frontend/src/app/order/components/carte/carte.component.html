@@ -10,16 +10,20 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of this.foods">
-      <td class="image-column"><img src="{{ item.src }}" /></td>
+      <td class="image-column"><img [src]="item.src" /></td>
       <td class="name-column">{{ item.name }}</td>
       <td class="price-column">{{ item.price }} Ft</td>
       <td class="ingredient-column">
-        <label
-          class="ingredient-label"
-          *ngFor="let ingredient of item.ingredients"
-        >
-          {{ ingredient.name }} <br />
-        </label>
+        <ul class="simple-list inline-elements">
+          <li
+            *ngFor="let ingredient of item.ingredients; let i = index"
+            [matTooltip]="ingredient.allergene | arrayList"
+          >
+            {{
+              ingredient.name + (i < item.ingredients.length - 1 ? ", " : "")
+            }}
+          </li>
+        </ul>
       </td>
       <td class="cart-column">
         <button mat-raised-button color="primary">

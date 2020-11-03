@@ -24,7 +24,7 @@ export class CarteComponent implements OnInit {
 
   foods: Food[] = [
     {
-      src: "item-1.jpg",
+      src: "assets/item-1.jpg",
       name: "Pizza",
       price: 1000,
       ingredients: [this.ingredient, this.ingredient0, this.ingredient1]

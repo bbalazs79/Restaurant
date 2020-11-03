@@ -41,3 +41,15 @@ body {
 .app-body {
   background-color: $app-background-color;
 }
+
+.simple-list {
+  list-style-type: none;
+  padding: 0;
+
+  &.inline-elements {
+    li {
+      display: inline-block;
+      white-space: pre-wrap;
+    }
+  }
+}
