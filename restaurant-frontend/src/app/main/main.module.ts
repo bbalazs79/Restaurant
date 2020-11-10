@@ -8,6 +8,9 @@ import { MainComponent } from "./components/main/main.component";
 import { LogoComponent } from "./components/logo/logo.component";
 import { HeroComponent } from "./components/hero/hero.component";
 import { HeaderComponent } from "./components/header/header.component";
+import { AboutComponent } from "./components/about/about.component";
+import { EvaluationComponent } from "./components/evaluation/evaluation.component";
+import { OrderComponent } from "./components/order/order.component";
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { HeaderComponent } from "./components/header/header.component";
     LogoComponent,
     HomeComponent,
     MainComponent,
-    HeroComponent
+    HeroComponent,
+    AboutComponent,
+    EvaluationComponent,
+    OrderComponent
   ],
   imports: [CommonModule, SharedModule, MainRoutingModule],
   exports: [HeaderComponent]

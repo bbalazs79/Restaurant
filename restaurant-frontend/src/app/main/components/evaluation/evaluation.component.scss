@@ -1,0 +1,41 @@
+@import "../../../../common.scss";
+
+.evaliation {
+  padding-right: 10px;
+  padding-left: 10px;
+
+  .header {
+    width: 100%;
+    padding-top: 10px;
+
+    h1 {
+      font-family: $app-secondary-font;
+    }
+  }
+
+  .divider {
+    width: 100%;
+    border-top: solid 1px;
+    border-bottom: solid 1px;
+    border-color: $app-background-color;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+
+    .article {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 10px;
+      border: solid 1px $app-background-color;
+
+      .author {
+        font-weight: bold;
+        color: $app-primary-color;
+      }
+    }
+  }
+}

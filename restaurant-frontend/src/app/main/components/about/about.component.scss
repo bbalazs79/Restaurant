@@ -1,0 +1,45 @@
+@import "../../../../common.scss";
+
+.about-us {
+  padding-right: 10px;
+  padding-left: 10px;
+  .header {
+    padding-top: 10px;
+
+    h1 {
+      font-family: $app-secondary-font;
+    }
+  }
+
+  .divider {
+    width: 100%;
+    border-top: solid 1px;
+    border-bottom: solid 1px;
+    border-color: $app-background-color;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px;
+
+    .restaurant-image {
+      width: 400px;
+      border: 1px solid var(--app-background-color);
+      object-fit: cover;
+    }
+
+    .article {
+      padding: 10px;
+
+      a.link {
+        color: var(--app-primary-color);
+        text-decoration: underline;
+
+        &::before {
+          content: "\00BB";
+        }
+      }
+    }
+  }
+}

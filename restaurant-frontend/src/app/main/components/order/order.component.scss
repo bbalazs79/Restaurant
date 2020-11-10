@@ -1,0 +1,52 @@
+@import "../../../../common.scss";
+
+.order {
+  width: 100%;
+  padding-top: 10px;
+
+  .top-divider {
+    width: 80%;
+    margin: auto;
+    border-top: solid 1px;
+    border-bottom: solid 1px;
+    border-color: $app-background-color;
+  }
+  .header {
+    text-align: center;
+    color: $app-secondary-color;
+
+    h1 {
+      font-style: italic;
+      font-family: $app-secondary-font;
+    }
+  }
+  .bottom-divider {
+    width: 60%;
+    margin: auto;
+    border-top: solid 1px;
+    border-bottom: solid 1px;
+    border-color: $app-background-color;
+  }
+  .content {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    margin: auto;
+
+    .left-content {
+      .image {
+        padding: 10px;
+        width: 400px;
+        object-fit: cover;
+      }
+    }
+
+    .right-content {
+      h2 {
+        font-style: italic;
+        font-family: $app-secondary-font;
+      }
+    }
+  }
+}
