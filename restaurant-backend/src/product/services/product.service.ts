@@ -3,14 +3,12 @@ import { Model } from 'mongoose';
 import { Product } from '../schemas/product.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { ProductDto } from 'dtos/product/product.dto';
-import { Ingredient } from '../schemas/ingredient.schema';
 import { IngredientDto } from 'dtos/product/ingredient.dto';
 
 @Injectable()
 export class ProductService {
   constructor(
     @InjectModel(Product.name) private productModel: Model<Product>,
-    @InjectModel(Ingredient.name) private ingredientModel: Model<Ingredient>,
   ) {}
 
   /* public async getIngredientsId(productIngredients: Ingredient[]): Promise<string[]>{
@@ -29,6 +27,7 @@ export class ProductService {
    * product neve
    */
   public async add(product: ProductDto): Promise<boolean> {
+    const productImgSource: string = product.imgSource;
     const productName: string = product.name;
     const productPrice: number = product.price;
     const productIngredients: IngredientDto[] = product.ingredients;
@@ -38,10 +37,12 @@ export class ProductService {
     } */
 
     const newProduct = new this.productModel({
+      imgSource: productImgSource,
       name: productName,
       price: productPrice,
       ingredients: productIngredients,
     });
+
     return !!newProduct.save();
   }
 
@@ -49,7 +50,10 @@ export class ProductService {
    * visszaadja az összes rendelhető ételt a collection-ből
    */
   public async findAll(): Promise<Product[]> {
-    return await this.productModel.find().exec();
+    return await this.productModel
+      .find()
+      .populate('ingredients')
+      .exec();
   }
 
   /**

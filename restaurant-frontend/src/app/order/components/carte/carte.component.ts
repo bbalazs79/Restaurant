@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Allergens } from "../../enums/allergens.enum";
 import { Food } from "../../interfaces/food";
 import { Ingredients } from "../../interfaces/ingredients";
+import { FoodService } from "../../servises/food.service";
+import { map, tap } from "rxjs/operators";
 
 @Component({
   selector: "app-carte",
@@ -9,52 +11,70 @@ import { Ingredients } from "../../interfaces/ingredients";
   styleUrls: ["./carte.component.scss"]
 })
 export class CarteComponent implements OnInit {
-  ingredient: Ingredients = {
-    name: "Szósz",
+  food: Food[];
+  /* ingredient: Ingredients = {
+    name: 'Szósz',
     allergene: [Allergens.LACTOSE, Allergens.LACTOSE]
   };
   ingredient0: Ingredients = {
-    name: "Alma",
+    name: 'Alma',
     allergene: [Allergens.LACTOSE, Allergens.LACTOSE]
   };
   ingredient1: Ingredients = {
-    name: "Sajt",
+    name: 'Sajt',
     allergene: [Allergens.LACTOSE, Allergens.LACTOSE]
-  };
+  }; 
 
   foods: Food[] = [
     {
-      src: "assets/item-1.jpg",
-      name: "Pizza",
+      imgSource: 'assets/item-1.jpg',
+      name: 'Pizza',
       price: 1000,
       ingredients: [this.ingredient, this.ingredient0, this.ingredient1]
     },
     {
-      src: "item-1.jpg",
-      name: "Palacsinta",
+      imgSource: 'assets/item-1.jpg',
+      name: 'Palacsinta',
       price: 1200,
       ingredients: [this.ingredient]
     },
     {
-      src: "item-1.jpg",
-      name: "Túrós rétes",
+      imgSource: 'assets/item-1.jpg',
+      name: 'Túrós rétes',
       price: 390,
       ingredients: [this.ingredient]
     },
     {
-      src: "item-1.jpg",
-      name: "Kefír",
+      imgSource: 'assets/item-1.jpg',
+      name: 'Kefír',
       price: 99,
       ingredients: [this.ingredient]
     },
     {
-      src: "item-1.jpg",
-      name: "Sztrapacska",
+      imgSource: 'assets/item-1.jpg',
+      name: 'Sztrapacska',
       price: 2300,
       ingredients: [this.ingredient]
     }
-  ];
-  constructor() {}
+  ]; */
+  constructor(private foodService: FoodService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.food = [];
+    this.getFoods();
+  }
+
+  getFoods() {
+    this.foodService
+      .getFood()
+      .pipe(
+        tap(x => {
+          this.food = x;
+        }),
+        map(x => {
+          console.log(x);
+        })
+      )
+      .subscribe();
+  }
 }

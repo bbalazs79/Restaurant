@@ -11,13 +11,16 @@ import { Ingredient } from './ingredient.schema';
  */
 @Schema()
 export class Product extends Document {
+  @Prop({ required: false })
+  imgSource: string;
+
   @Prop({ required: true })
   name: string;
 
   @Prop({ required: true })
   price: number;
 
-  @Prop({ type: Array<NativeSchema.Types.ObjectId>(), ref: 'Ingredient' })
+  @Prop([{ type: NativeSchema.Types.ObjectId, ref: 'Ingredient' }])
   ingredients: Ingredient[];
 }
 

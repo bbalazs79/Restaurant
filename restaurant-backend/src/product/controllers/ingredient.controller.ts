@@ -24,7 +24,7 @@ export class IngredientController {
   public async add(@Body() ingredientDto: IngredientDto): Promise<void> {
     const result = await this.ingredientService.add(
       ingredientDto.name,
-      ingredientDto.allergene,
+      ingredientDto.allergen,
     );
 
     if (!result) {

@@ -1,3 +1,4 @@
+<!-- | arrayList -->
 <table class="table-food">
   <thead>
     <tr>
@@ -9,19 +10,29 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of this.foods">
-      <td class="image-column"><img [src]="item.src" /></td>
+    <tr *ngFor="let item of this.food">
+      <td class="image-column">
+        <img
+          [src]="
+            item.imgSource == '' || item.imgSource == undefined
+              ? 'assets/item-1.jpg'
+              : item.imgSource
+          "
+        />
+      </td>
       <td class="name-column">{{ item.name }}</td>
       <td class="price-column">{{ item.price }} Ft</td>
       <td class="ingredient-column">
         <ul class="simple-list inline-elements">
           <li
             *ngFor="let ingredient of item.ingredients; let i = index"
-            [matTooltip]="ingredient.allergene | arrayList"
+            [matTooltip]="
+              ingredient.allergen == undefined
+                ? ''
+                : (ingredient.allergen | arrayList)
+            "
           >
-            {{
-              ingredient.name + (i < item.ingredients.length - 1 ? ", " : "")
-            }}
+            {{ ingredient.name + (i < item.ingredients.length - 1 ? "," : "") }}
           </li>
         </ul>
       </td>
