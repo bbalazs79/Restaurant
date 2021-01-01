@@ -2,7 +2,6 @@ import { Routes, RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
 import { HomeComponent } from "./components/home/home.component";
 import { MainComponent } from "./components/main/main.component";
-import { CarteComponent } from "../order/components/carte/carte.component";
 
 const routes: Routes = [
   {
@@ -17,6 +16,11 @@ const routes: Routes = [
         path: "carte",
         loadChildren: () =>
           import("../order/order.module").then(m => m.OrderModule)
+      },
+      {
+        path: "contact",
+        loadChildren: () =>
+          import("../contact/contact.module").then(m => m.ContactModule)
       }
     ]
   }

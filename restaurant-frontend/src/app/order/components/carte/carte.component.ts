@@ -72,7 +72,7 @@ export class CarteComponent implements OnInit {
           this.food = x;
         }),
         map(x => {
-          console.log(x);
+          /* console.log(x); */
         })
       )
       .subscribe();

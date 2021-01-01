@@ -5,7 +5,6 @@ import { Pipe, PipeTransform } from "@angular/core";
 })
 export class ArrayListPipe implements PipeTransform {
   transform(value: any): string {
-    console.log(value);
     return value.join(", ");
   }
 }
