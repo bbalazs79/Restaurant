@@ -1,26 +1,17 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as NativeSchema } from 'mongoose';
-import { User } from 'src/auth/schemas/user.schema';
-import { FoodNumber } from './food-order-count.schema';
+import { Cart } from './cart.schema';
 
-// A DB sémákat a @Schema() decoratorral látjuk el.
-// Ha nincs hozzájuk collection a DB-ben, a Mongoose létrehozza.
-// A Document-ből kell származniuk.
+export type OrderDocument = Order & Document;
 
-/**
- * Order séma.
- */
 @Schema()
-export class Order extends Document {
-  @Prop({ type: NativeSchema.Types.ObjectId, required: true, ref: 'User' })
-  user: User;
-
+export class Order{
   @Prop({
     type: NativeSchema.Types.ObjectId,
     required: true,
-    ref: 'FoodNumber',
+    ref: 'Cart',
   })
-  food: FoodNumber;
+  Order: Cart[];
 
   @Prop({ required: true })
   deliveryAddress: string;
@@ -29,5 +20,4 @@ export class Order extends Document {
   deliveryTime: Date;
 }
 
-// Létre kell hozni explicit módon a sémát, hogy a modulban fel tudjuk konfigurálni.
 export const OrderSchema = SchemaFactory.createForClass(Order);

@@ -6,7 +6,6 @@ import { SharedModule } from "../shared/shared.module";
 import { AuthRoutingModule } from "./auth-routing.module";
 import { RequestHeaderInterceptor } from "./interceptors/request-header.interceptor";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { MainModule } from "../main/main.module";
 
 @NgModule({
   declarations: [RegistrationPageComponent, LoginPageComponent],

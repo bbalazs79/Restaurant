@@ -36,7 +36,7 @@ export class ProductController {
   }
 
   @Get(':id')
-  @UseGuards(AuthGuard)
+  //@UseGuards(AuthGuard)
   async findById(@Param('id') id: string): Promise<Product> {
     return await this.productService.findById(id);
   }

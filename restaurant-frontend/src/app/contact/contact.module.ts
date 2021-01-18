@@ -6,6 +6,10 @@ import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
   declarations: [ContactComponent],
-  imports: [SharedModule, CommonModule, ContactRoutingModule]
+  imports: [
+    SharedModule, 
+    CommonModule, 
+    ContactRoutingModule,
+  ]
 })
 export class ContactModule {}
