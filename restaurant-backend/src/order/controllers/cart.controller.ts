@@ -1,6 +1,8 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { AddToCartDto } from 'dtos/order/order-food.dto';
-import { UpdateCartCountDto, UpdateCartStateDto } from 'dtos/order/update-cart.dto';
+import { UpdateCartCountDto, UpdateCartDto, UpdateCartStateDto } from 'dtos/order/update-cart.dto';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
+import { User } from 'src/auth/schemas/user.schema';
 import { Cart } from '../schemas/cart.schema';
 import { CartService } from '../services/cart.service';
 
@@ -23,6 +25,11 @@ export class CartController {
     public async findAllByUser(@Param('id') id: string): Promise<Cart[]>{
         return await this.cartService.findAllByUser(id);
     }
+
+    // @Put('/:id')
+    // public update(@Param('id') id: string, @Body() dto: UpdateCartDto, @CurrentUser() user: User): Promise<any> {
+    //     return this.cartService.update(id, dto, user);
+    // }
 
     @Put('/updateCount/:id')
     public async updateCount(@Param('id') id: string, @Body() updateCartCountDto: UpdateCartCountDto): Promise<Cart[]>{

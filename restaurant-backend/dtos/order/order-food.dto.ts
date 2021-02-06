@@ -13,7 +13,7 @@ export interface AddToCartDto{
 } */
 
 export interface CreateOrderDto{
-    order: AddToCartDto[];
+    Order: AddToCartDto[];
     deliveryAddress: string;
     deliveryTime: Date;
 }

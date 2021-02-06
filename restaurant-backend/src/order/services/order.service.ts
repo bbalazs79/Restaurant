@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { Order, OrderDocument } from '../schemas/order.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -6,6 +6,7 @@ import { CartService } from './cart.service';
 import { CreateOrderDto, ParamOrderDto } from 'dtos/order/order-food.dto';
 import { Cart, CartDocument } from '../schemas/cart.schema';
 import moment from 'moment';
+import { OrderState } from '../enums/orderstate.enum';
 
 @Injectable()
 export class OrderService {
@@ -16,20 +17,32 @@ export class OrderService {
     ) {}
 
   public async add(orderParams: ParamOrderDto): Promise<any> {
-    await this.cartModel.find({user: orderParams.userId}).exec().then(x=>{
-      let newOrder: CreateOrderDto;
-      newOrder.order = x;
-      newOrder.deliveryAddress = orderParams.deliveryAddress;
-      newOrder.deliveryTime = new Date(moment().fromNow());
-      const response = new this.orderModel(newOrder);
-
-      return !!response.save();
+    const cart = await this.cartModel.find({
+      user: orderParams.userId,
+      state: OrderState.CART,
     });
-    return false;
+
+    if (cart?.length <= 0) {
+      throw new BadRequestException('Nincs elem a kosárban!');
+    }
+
+    const newOrder: CreateOrderDto = {
+      Order: cart,
+      deliveryAddress: orderParams.deliveryAddress,
+      deliveryTime: new Date(),
+    };
+
+    await this.cartModel.updateMany({ user: orderParams.userId }, {
+      state: OrderState.ORDERED,
+    });
+
+    const response = new this.orderModel(newOrder);
+
+    return !!response.save();
   }
 
-  public async findAll(): Promise<any> {
-    return await this.orderModel.find().exec();
+  public findAll(): Promise<any> {
+    return this.orderModel.find().exec();
   }
 
   public async findById(id?: string): Promise<any> {

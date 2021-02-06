@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { AddToCartDto } from 'dtos/order/order-food.dto';
 import { Model } from 'mongoose';
+import { User } from 'src/auth/schemas/user.schema';
 import { OrderState } from '../enums/orderstate.enum';
 import { Cart, CartDocument } from '../schemas/cart.schema';
 
@@ -16,13 +17,22 @@ export class CartService {
         return !!response.save();
     }
 
-    async findAll(): Promise<Cart[]> {
+    findAll(): Promise<Cart[]> {
         return this.cartModel.find().exec();
     }
 
-    async findAllByUser(userid: string): Promise<Cart[]>{
+    findAllByUser(userid: string): Promise<Cart[]>{
         return this.cartModel.find({user: userid}).exec();
     }
+
+    // async update(id: string, model: Partial<Cart>, user: User): Promise<any> {
+    //     const original = await this.cartModel.findById(id);
+
+    //     return this.cartModel.updateOne(
+    //         { _id: id },
+    //         model,
+    //     ).exec();
+    // }
 
     async updateCount(cartId: string, count: number): Promise<any>{
         return this.cartModel.updateOne({_id: cartId},{count: count}).exec();
