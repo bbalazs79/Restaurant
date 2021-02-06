@@ -12,8 +12,13 @@ export interface AddToCartDto{
     state: OrderState
 } */
 
-export interface OrderDto{
+export interface CreateOrderDto{
     order: AddToCartDto[];
     deliveryAddress: string;
     deliveryTime: Date;
+}
+
+export interface ParamOrderDto{
+    userId: string;
+    deliveryAddress: string;
 }
