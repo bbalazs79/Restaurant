@@ -1,0 +1,19 @@
+{
+  "name": "restaurant-master",
+  "version": "1.0.0",
+  "description": "",
+  "main": "restaurant-backend/dist/src/main",
+  "scripts": {
+    "postinstall": "cd restaurant-backend && npm install && cd ../restaurant-frontend && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bbalazs79/Restaurant.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bbalazs79/Restaurant/issues"
+  },
+  "homepage": "https://github.com/bbalazs79/Restaurant#readme"
+}
