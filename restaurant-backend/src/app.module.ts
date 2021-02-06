@@ -14,6 +14,8 @@ import { AuthMiddleware } from './auth/middleware/auth.middleware';
 import { ProductModule } from './product/product.module';
 import { APP_PIPE } from '@nestjs/core';
 import { OrderModule } from './order/order.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 // Fő app modul, globális dolgokat tartalmaz
 @Module({
@@ -30,6 +32,9 @@ import { OrderModule } from './order/order.module';
     MongooseModule.forRoot(
       `mongodb+srv://${process.env.DATABASE_USER}:${process.env.DATABASE_PASSWORD}@${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}?retryWrites=true&w=majority`,
     ),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', '..', '..', 'restaurant-frontend', 'dist'),
+    }),
   ],
   controllers: [AppController],
   providers: [
