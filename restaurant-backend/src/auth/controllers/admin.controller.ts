@@ -17,8 +17,8 @@ export class AdminController {
         status: HttpStatus.CONFLICT,
         description: 'User already exists.',
     })
-    public async registerUser(@Body() model: AdminRegistrationDto): Promise<any> {
-        const result = await this.adminService.addUser(model.userModel,model.userRole);
+    public registerUser(@Body() model: AdminRegistrationDto): Promise<any> {
+        const result = this.adminService.addUser(model.userModel,model.userRole);
         return result;
     }
  }

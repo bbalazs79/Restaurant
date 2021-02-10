@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { GetProfileDto } from 'dtos/profile/get-frofile.dto';
-import { UpdateUserDto } from 'dtos/user/user-update';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
 import { User } from 'src/auth/schemas/user.schema';
 import { ProfileService } from '../services/profile.service';
@@ -9,10 +9,10 @@ import { ProfileService } from '../services/profile.service';
 export class ProfileController {
     constructor(private profileService: ProfileService) {}
 
-    @Post('')
+    @Get('')
     @UseGuards(AuthGuard)
-    public async getProfile(@Body()body: GetProfileDto): Promise<User> {
-        return await this.profileService.getCurrentUserProfile(body.username);
+    public getProfile(@CurrentUser() user): Promise<User> {
+        return user;
     }
 
     @Post('getMyName')
