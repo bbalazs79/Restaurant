@@ -23,8 +23,11 @@ export class ProfileService {
         return user.first_name + " " + user.last_name;
     }
 
-    public async updateUserProfile(id: string, user: UpdateUserDto): Promise<User>{
-        await this.userModel.update({_id: id}, {user});
-        return await this.userModel.findOne({_id: id});
+    async updateUserProfile(id: string, model: Partial<User>): Promise<any>{
+        //mert átadható neki id, és az id nem változhat
+        const original = await this.userModel.findById(id);
+        model._id = original.id;
+        this.userModel.updateOne({_id: id},model).exec();
+        return await this.userModel.findById(id);
     }
 }

@@ -27,7 +27,7 @@ export class ProfileController {
 
     @Put(':id')
     @UseGuards(AuthGuard)
-    public async updateProfile(@Param('id') id: string, @Body() body: UpdateUserDto): Promise<User | boolean> {
+    public async updateProfile(@Param('id') id: string, @Body() body: Partial<User>): Promise<User | boolean> {
         const user =  await this.profileService.updateUserProfile(id,body);
         if(!user){
             return false;
