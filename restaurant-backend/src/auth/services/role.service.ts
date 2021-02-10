@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { Role } from '../schemas/role.schema';
+import { Role, RoleDocument } from '../schemas/role.schema';
 
 @Injectable()
 export class RoleService {
-  constructor(@InjectModel(Role.name) private roleModel: Model<Role>) {}
+  constructor(@InjectModel(Role.name) private roleModel: Model<RoleDocument>) {}
 
   public async add(role: string): Promise<boolean> {
     if (await this.roleModel.findOne({ role })) {

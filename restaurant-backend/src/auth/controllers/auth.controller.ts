@@ -71,7 +71,7 @@ export class AuthController {
   })
   @HttpCode(HttpStatus.OK)
   public async registerUser(@Body() regDto: RegistrationDto): Promise<void> {
-    console.log(regDto);
+    //console.log(regDto);
     const result = await this.authService.registerUser(
       regDto.username,
       regDto.password,

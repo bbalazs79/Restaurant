@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from 'src/auth/schemas/user.schema';
+import { User, UserDocument } from 'src/auth/schemas/user.schema';
 import { Model } from 'mongoose';
-import { UserToken } from 'src/auth/schemas/user-token.schema';
+import { UserToken, UserTokenDocument } from 'src/auth/schemas/user-token.schema';
 import { v4 as uuidv4 } from 'uuid';
 import * as moment from 'moment';
 import * as bcrypt from 'bcrypt';
-import { Role } from '../schemas/role.schema';
+import { Role, RoleDocument } from '../schemas/role.schema';
 import { hashPassword } from '../utils/hash-password';
 
 /**
@@ -17,9 +17,9 @@ export class AuthService {
   // A DB, és az egyes sémák eléréséhez Model-eket kell beinjektálnunk.
   // Ezeken keresztül érjük el az egyes MongoDB kollekciókat.
   constructor(
-    @InjectModel(User.name) private userModel: Model<User>,
-    @InjectModel(UserToken.name) private userTokenModel: Model<UserToken>,
-    @InjectModel(Role.name) private roleModel: Model<Role>,
+    @InjectModel(User.name) private userModel: Model<UserDocument>,
+    @InjectModel(UserToken.name) private userTokenModel: Model<UserTokenDocument>,
+    @InjectModel(Role.name) private roleModel: Model<RoleDocument>,
   ) {}
 
   /**

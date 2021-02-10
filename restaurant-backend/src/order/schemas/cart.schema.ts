@@ -1,7 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as NativeSchema } from 'mongoose';
-import { User } from 'src/auth/schemas/user.schema';
-import { Product } from 'src/product/schemas/product.schema';
 import { OrderState } from '../enums/orderstate.enum';
 
 export type CartDocument = Cart & Document;

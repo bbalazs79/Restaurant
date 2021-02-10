@@ -1,4 +1,3 @@
-import { ProfileService } from './user/services/profile.service';
 import {
   Module,
   RequestMethod,
@@ -37,7 +36,8 @@ import { join } from 'path';
       rootPath: join(__dirname, '..', '..', '..', 'restaurant-frontend', 'dist'),
     }),
   ],
-  controllers: [AppController],
+  controllers: [
+    AppController],
   providers: [
     AppService,
     {
