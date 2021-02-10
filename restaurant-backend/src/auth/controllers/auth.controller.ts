@@ -17,8 +17,6 @@ import { AuthGuard } from '../guards/auth.guard';
 import { extractAuthorizationHeader } from '../utils/extract-authorization';
 import { RegistrationDto } from 'dtos/auth/registration.dto';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
-import { CurrentUser } from '../decorators/current-user.decorator';
-import { User } from '../schemas/user.schema';
 
 /**
  * Authentikációs végpontok.
@@ -26,6 +24,10 @@ import { User } from '../schemas/user.schema';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
+
+  @Get()
+  @UseGuards(AuthGuard)
+  public auth(): void{}
 
   // POST /auth/login
   // @Body(): Ha ezzel felannotáljuk a paramétert, akkor a request body tartalma kerül a paraméterbe.

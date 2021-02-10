@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { ApiClient } from "src/app/shared/utils/api-client";
-import { Observable, BehaviorSubject } from "rxjs";
-import { map, tap } from "rxjs/operators";
+import { Observable, BehaviorSubject, EMPTY } from "rxjs";
+import { catchError, map, tap } from "rxjs/operators";
+import { HttpHeaders } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root"
@@ -9,7 +10,11 @@ import { map, tap } from "rxjs/operators";
 export class AuthService {
   public isLoggedIn$ = new BehaviorSubject(false);
 
-  constructor(private apiClient: ApiClient) {}
+  constructor(private apiClient: ApiClient) {
+    if(localStorage.getItem('token')){
+      this.tryAuth().subscribe();
+    }
+  }
   /* 
    map: műveletet végez: itt lehet megvalósítani minden előzetes műveletet a response-ra
   */
@@ -39,5 +44,18 @@ export class AuthService {
     return this.apiClient
       .get<void>("/auth/logout")
       .pipe(tap(() => this.isLoggedIn$.next(false)));
+  }
+
+  public tryAuth(): Observable<void>{
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token' || '')}`
+    });
+    return this.apiClient.get<void>('/auth',{headers}).pipe(
+      tap(()=>this.isLoggedIn$.next(true)),
+      catchError(()=>{
+        this.isLoggedIn$.next(false);
+        return EMPTY;
+      })
+    );
   }
 }
