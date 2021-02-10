@@ -9,6 +9,7 @@ import { BehaviorSubject } from "rxjs";
 })
 export class HeaderComponent implements OnInit {
   public isLoggedIn$: BehaviorSubject<boolean>;
+  public currUserName: string = localStorage.getItem("UserName");
 
   constructor(private authService: AuthService) {
     this.isLoggedIn$ = this.authService.isLoggedIn$;

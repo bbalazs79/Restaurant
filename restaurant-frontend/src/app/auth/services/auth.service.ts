@@ -27,6 +27,14 @@ export class AuthService {
       );
   }
 
+  public getCurrentUserName(username: string): Observable<void>{
+    return this.apiClient.post("/profile/getMyName", {username})
+    .pipe(
+      map(response=>
+        localStorage.setItem("UserName",String(response))
+        ));
+  }
+
   public logout(): Observable<void> {
     return this.apiClient
       .get<void>("/auth/logout")
