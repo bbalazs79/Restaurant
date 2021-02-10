@@ -17,6 +17,8 @@ import { AuthGuard } from '../guards/auth.guard';
 import { extractAuthorizationHeader } from '../utils/extract-authorization';
 import { RegistrationDto } from 'dtos/auth/registration.dto';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { CurrentUser } from '../decorators/current-user.decorator';
+import { User } from '../schemas/user.schema';
 
 /**
  * Authentikációs végpontok.
@@ -28,7 +30,7 @@ export class AuthController {
   // POST /auth/login
   // @Body(): Ha ezzel felannotáljuk a paramétert, akkor a request body tartalma kerül a paraméterbe.
   // Itt egy username és egy password van a DTO interface-jében, tehát ezeket várjuk.
-  // Az egyes DTO interface-ek a dtos/auth-ban vannak.
+  // Az egyes DTO interface-ek a dtos/auth-ban vannak
   @Post('login')
   @ApiOperation({ summary: 'User login.' })
   @ApiResponse({
@@ -41,6 +43,7 @@ export class AuthController {
       authDto.username,
       authDto.password,
     );
+
     if (!token) {
       // A szabványos HTTP kódokhoz tartozik egy-egy exception.
       // Ha a request kezelésének során egy ilyen HttpException feldobódik,
@@ -51,6 +54,7 @@ export class AuthController {
 
     return {
       token,
+      //String("sdfdsaf"),
     };
   }
 

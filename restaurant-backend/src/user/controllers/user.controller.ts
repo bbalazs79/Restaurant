@@ -6,6 +6,7 @@ import { UserDto } from 'dtos/auth/user.dto';
 import { UserService } from '../services/user.service';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { Roles } from 'src/auth/decorators/role.decorator';
+import { UsernameDto } from 'dtos/user/user-name.dto';
 
 // Ez a /user végpont.
 @Controller('user')
@@ -19,8 +20,8 @@ export class UserController {
   // ezért minden modulban, ahol használni akarjuk, be kell tenni az AuthModule-t az
   // adott modul importjaiba!
   @Get('getCurrentUser')
-  @UseGuards(AuthGuard, RolesGuard)
-  @Roles('admin')
+  @UseGuards(AuthGuard, /* RolesGuard */)
+  //@Roles('admin')
   public async getCurrentUser(
     @CurrentUser() currentUser: User,
   ): Promise<UserDto> {
@@ -47,4 +48,9 @@ export class UserController {
   public async getUsers(): Promise<User[]> {
     return await this.userService.findAllUsers();
   }
+
+  /* @Get('')
+  public async getNameByUsername(): Promise<UsernameDto>{
+    return await this.userService.getNameByUsername();
+  } */
 }

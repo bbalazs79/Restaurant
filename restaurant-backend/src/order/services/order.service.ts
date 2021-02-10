@@ -2,10 +2,8 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { Order, OrderDocument } from '../schemas/order.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { CartService } from './cart.service';
 import { CreateOrderDto, ParamOrderDto } from 'dtos/order/order-food.dto';
 import { Cart, CartDocument } from '../schemas/cart.schema';
-import moment from 'moment';
 import { OrderState } from '../enums/orderstate.enum';
 
 @Injectable()
@@ -13,7 +11,6 @@ export class OrderService {
   constructor(
     @InjectModel(Order.name) private orderModel: Model<OrderDocument>,
     @InjectModel(Cart.name) private cartModel: Model<CartDocument>,
-    private cartService: CartService,
     ) {}
 
   public async add(orderParams: ParamOrderDto): Promise<any> {

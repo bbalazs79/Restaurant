@@ -12,4 +12,8 @@ export class UserService {
 
     return result;
   }
+
+  /* public async getNameByUsername(username: string): Promise<UsernameDto>{
+    return await this.userModel.findOne(username).exec();
+  } */
 }

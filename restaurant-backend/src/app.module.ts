@@ -1,3 +1,4 @@
+import { ProfileService } from './user/services/profile.service';
 import {
   Module,
   RequestMethod,
