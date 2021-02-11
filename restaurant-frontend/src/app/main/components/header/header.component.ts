@@ -9,10 +9,11 @@ import { BehaviorSubject } from "rxjs";
 })
 export class HeaderComponent implements OnInit {
   public isLoggedIn$: BehaviorSubject<boolean>;
-  public currUserName: string = localStorage.getItem("UserName");
+  public currUserName$: BehaviorSubject<string>;
 
   constructor(private authService: AuthService) {
     this.isLoggedIn$ = this.authService.isLoggedIn$;
+    this.currUserName$ = this.authService.currUserName$;
   }
 
   ngOnInit(): void {}
@@ -20,5 +21,7 @@ export class HeaderComponent implements OnInit {
   onClickLogout() {
     this.authService.logout().subscribe();
     this.isLoggedIn$ = this.authService.isLoggedIn$;
+    localStorage.setItem('token','');
+    window.location.reload();
   }
 }
