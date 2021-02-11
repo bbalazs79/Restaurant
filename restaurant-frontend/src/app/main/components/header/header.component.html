@@ -40,7 +40,7 @@
           [matMenuTriggerFor]="aboveMenu"
           [hidden]="true"
         >
-        {{this.currUserName$.value}}
+        {{this.currUserName$ | async}}
         </button>
         <mat-menu class="user-menu" #aboveMenu="matMenu" yPosition="below">
           <button class="white-btn" mat-menu-item>
