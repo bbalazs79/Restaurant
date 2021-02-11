@@ -1,15 +1,38 @@
 <div class="hero-body">
-  <div class="current-description">
-    <h1>Foglalás</h1>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla molestie at
-      libero vel pellentesque. Mauris efficitur dolor vitae ipsum fringilla
-      sodales. Fusce sollicitudin arcu eget mauris tristique luctus.
-    </p>
-    <p>
-      Phasellus nec odio ut risus maximus semper. Nullam porttitor tortor eu
-      rhoncus laoreet. Cras facilisis faucibus arcu, at aliquam enim.
-    </p>
-  </div>
-  <img class="gfg" src="../../../assets/item-1.jpg" />
+  <carousel 
+    [height]="400"
+    [loop]="true"
+    [autoplay]="true"
+    [autoplayInterval]="1000"
+    cellWidth="100%"
+    #heroCarousel>
+    <div class="carousel-cell">
+      <div class="description">
+        <h1>Foglalás</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla molestie at
+          libero vel pellentesque. Mauris efficitur dolor vitae ipsum fringilla
+          sodales. Fusce sollicitudin arcu eget mauris tristique luctus.
+        </p>
+        <p>
+          Phasellus nec odio ut risus maximus semper. Nullam porttitor tortor eu
+          rhoncus laoreet. Cras facilisis faucibus arcu, at aliquam enim.
+        </p>
+      </div>
+    </div>
+    <div class="carousel-cell">
+      <div class="description">
+        <h1>Rendelés</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla molestie at
+          libero vel pellentesque. Mauris efficitur dolor vitae ipsum fringilla
+          sodales. Fusce sollicitudin arcu eget mauris tristique luctus.
+        </p>
+        <p>
+          Phasellus nec odio ut risus maximus semper. Nullam porttitor tortor eu
+          rhoncus laoreet. Cras facilisis faucibus arcu, at aliquam enim.
+        </p>
+      </div>
+    </div>
+  </carousel>
 </div>
