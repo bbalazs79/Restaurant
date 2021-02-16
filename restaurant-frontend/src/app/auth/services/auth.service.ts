@@ -27,7 +27,8 @@ export class AuthService {
         password
       })
       .pipe(
-        tap(() => {
+        tap(response => {
+          localStorage.setItem('token', response.token);
           this.isLoggedIn$.next(true);
           this.getCurrentUserName().subscribe();
         }),

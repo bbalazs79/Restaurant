@@ -11,6 +11,7 @@ import { HeaderComponent } from "./components/header/header.component";
 import { AboutComponent } from "./components/about/about.component";
 import { EvaluationComponent } from "./components/evaluation/evaluation.component";
 import { OrderComponent } from "./components/order/order.component";
+import { AuthModule } from "../auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { OrderComponent } from "./components/order/order.component";
     EvaluationComponent,
     OrderComponent
   ],
-  imports: [CommonModule, SharedModule, MainRoutingModule],
+  imports: [CommonModule, SharedModule, MainRoutingModule, AuthModule],
   exports: [HeaderComponent]
 })
 export class MainModule {}
