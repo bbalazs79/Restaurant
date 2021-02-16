@@ -43,7 +43,7 @@
         {{this.currUserName$ | async}}
         </button>
         <mat-menu class="user-menu" #aboveMenu="matMenu" yPosition="below">
-          <button class="white-btn" mat-menu-item>
+          <button class="white-btn" mat-menu-item routerLink='/profile'>
             Beállítások<mat-icon
               class="white-icon"
               aria-hidden="false"
@@ -51,7 +51,7 @@
               >settings</mat-icon
             >
           </button>
-          <button (click)="onClickLogout()" class="white-btn" mat-menu-item>
+          <button (click)="onClickLogout()" routerLink="/" class="white-btn" mat-menu-item>
             Kijelentkezés<mat-icon
               class="white-icon"
               aria-hidden="false"

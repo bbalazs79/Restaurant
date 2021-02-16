@@ -22,6 +22,6 @@ export class HeaderComponent implements OnInit {
     this.authService.logout().subscribe();
     this.isLoggedIn$ = this.authService.isLoggedIn$;
     localStorage.setItem('token','');
-    window.location.reload();
+    //window.location.reload();
   }
 }
