@@ -8,6 +8,7 @@ import * as moment from 'moment';
 import * as bcrypt from 'bcrypt';
 import { Role, RoleDocument } from '../schemas/role.schema';
 import { hashPassword } from '../utils/hash-password';
+import { BasicCheckDto } from 'dtos/auth/precheck.dto';
 
 /**
  * Authentikációval kapcsolatos service.
@@ -128,5 +129,13 @@ export class AuthService {
     // deletedCount: hányat sikerült törölni (itt remélhetőleg 1-et)
     return !!(await this.userTokenModel.deleteOne({ value: token }))
       .deletedCount;
+  }
+
+  public async checkPassword(data: BasicCheckDto): Promise<boolean>{
+    const user = await this.userModel.findOne({
+      _id: data._id,
+    }).exec();
+
+    return (user && (await bcrypt.compare(data.password, user.password)));
   }
 }

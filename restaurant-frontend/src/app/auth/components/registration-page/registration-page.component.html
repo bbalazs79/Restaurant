@@ -2,44 +2,46 @@
   <mat-step [stepControl]="authenticationGroup">
     <form [formGroup]="authenticationGroup">
       <ng-template matStepLabel>Bejelentkezéshez szükséges adatok</ng-template>
-      <mat-form-field>
-        <mat-label>Felhasználónév</mat-label>
-        <input
-          matInput
-          formControlName="username"
-          placeholder="felhasználónév"
-          required
-        />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Email</mat-label>
-        <input
-          matInput
-          formControlName="email"
-          placeholder="email@email.hu"
-          required
-        />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Jelszó</mat-label>
-        <input
-          matInput
-          type="password"
-          formControlName="password"
-          placeholder="***"
-          required
-        />
-      </mat-form-field>
-      <mat-form-field>
-        <mat-label>Jelszó Újra</mat-label>
-        <input
-          matInput
-          type="password"
-          formControlName="passwordAgain"
-          placeholder="***"
-          required
-        />
-      </mat-form-field>
+      <div fxLayout="row wrap" fxLayoutGap="20px">
+        <mat-form-field>
+          <mat-label>Felhasználónév</mat-label>
+          <input
+            matInput
+            formControlName="username"
+            placeholder="felhasználónév"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            placeholder="email@email.hu"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Jelszó</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            placeholder="***"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Jelszó Újra</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="passwordAgain"
+            placeholder="***"
+            required
+          />
+        </mat-form-field>
+      </div>
       <div>
         <button mat-button color="accent" matStepperNext>Következő</button>
       </div>
@@ -48,6 +50,7 @@
   <!-- [editable]="isEditable" -->
   <mat-step [stepControl]="personalGroup">
     <form [formGroup]="personalGroup">
+      <div fxLayout="row wrap" fxLayoutGap="20px">
       <ng-template matStepLabel>Profil Adatok</ng-template>
       <mat-form-field>
         <mat-label>Vezetéknév</mat-label>
@@ -76,6 +79,7 @@
           required
         />
       </mat-form-field>
+    </div>
       <div>
         <button mat-button color="accent" matStepperPrevious>Vissza</button>
         <button mat-button color="accent" matStepperNext>Következő</button>
@@ -85,6 +89,7 @@
 
   <mat-step [stepControl]="locationGroup">
     <form [formGroup]="locationGroup">
+      <div fxLayout="row wrap" fxLayoutGap="20px">
       <ng-template matStepLabel>Szállítási adatok</ng-template>
       <mat-form-field>
         <mat-label>Irányítószám</mat-label>
@@ -130,6 +135,7 @@
         <mat-label>Kapucsengő</mat-label>
         <input matInput formControlName="doorbell" placeholder="11" />
       </mat-form-field>
+    </div>
       <div>
         <button mat-button color="accent" matStepperPrevious>Vissza</button>
         <button
@@ -145,7 +151,7 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Kész</ng-template>
-    <p class="end-capture">Köszönjük ,hogy regisztrált.</p>
+    <p class="">Köszönjük ,hogy regisztrált!</p>
     <div>
       <button mat-button matStepperPrevious color="accent">Vissza</button>
       <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->

@@ -213,14 +213,25 @@ $mat-warn: (
 $theme-warn: mat-palette($mat-warn, main, lighter, darker);;
 
 $theme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
+
+$candy-app-primary: mat-palette($mat-indigo);
+$candy-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$candy-app-warn:    mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as `color` or `typography`.
+$candy-app-theme: mat-light-theme(
+    $candy-app-primary,
+    $candy-app-accent,
+    $candy-app-warn
+);
 $altTheme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
 
 // Theme Init
 @include angular-material-theme($theme);
-
-.theme-alternate {
-  @include angular-material-theme($altTheme);
-}
+@include mat-form-field-theme($candy-app-theme);
 
 // Specific component overrides, pieces that are not in line with the general theming
 

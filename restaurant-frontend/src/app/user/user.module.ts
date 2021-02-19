@@ -4,11 +4,12 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { UserRoutingModule } from './user-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { AuthModule } from '../auth/auth.module';
+import { PrecheckProfileDialogComponent } from './components/precheck-profile-dialog/precheck-profile-dialog.component';
 
 
 
 @NgModule({
-  declarations: [ProfileComponent],
+  declarations: [ProfileComponent, PrecheckProfileDialogComponent],
   imports: [
     CommonModule,
     UserRoutingModule,

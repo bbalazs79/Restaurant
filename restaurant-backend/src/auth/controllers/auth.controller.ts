@@ -9,6 +9,7 @@ import {
   Request,
   HttpCode,
   HttpStatus,
+  BadRequestException,
 } from '@nestjs/common';
 import { BasicAuthDto } from 'dtos/auth/basic-auth.dto';
 import { AuthService } from '../services/auth.service';
@@ -17,6 +18,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { extractAuthorizationHeader } from '../utils/extract-authorization';
 import { RegistrationDto } from 'dtos/auth/registration.dto';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { BasicCheckDto } from 'dtos/auth/precheck.dto';
 
 /**
  * Authentikációs végpontok.
@@ -28,6 +30,14 @@ export class AuthController {
   @Get()
   @UseGuards(AuthGuard)
   public auth(): void{}
+
+  @Post()
+  @UseGuards(AuthGuard)
+  public async checkPassword(@Body() data: BasicCheckDto): Promise<void>{
+    if (!(await this.authService.checkPassword(data))) {
+      throw new BadRequestException('A jelszó helytelen');
+    }
+  }
 
   // POST /auth/login
   // @Body(): Ha ezzel felannotáljuk a paramétert, akkor a request body tartalma kerül a paraméterbe.

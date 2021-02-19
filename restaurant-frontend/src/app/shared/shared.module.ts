@@ -94,6 +94,7 @@ const materialModules = [
   ScrollingModule,
   IvyCarouselModule,
   FlexLayoutModule,
+  MatSnackBarModule,
 ];
 
 @NgModule({

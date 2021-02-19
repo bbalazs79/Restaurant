@@ -1,9 +1,11 @@
 .login-group {
-  display: flex;
+  background-color: white;
+  /* display: flex;
   flex-direction: column;
-  width: 40%;
-  margin: auto;
-  margin-top: 10px;
+  width: 40%; */
+  /* margin: auto;
+  margin-top: 10px; */
+  box-shadow: 4px 4px 5px 0 rgb(0 0 0 / 45%);
 }
 
 .flex-col {
@@ -17,4 +19,13 @@
 
 .form-field {
   text-align: center;
+}
+
+.login-button{
+  margin: 0 20px 5px 20px;
+
+  &:disabled{
+    background-color: lightgray;
+    color: #000000;
+  }
 }
