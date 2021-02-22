@@ -7,10 +7,12 @@ import { Order, OrderSchema } from './schemas/order.schema';
 import { Cart, CartSchema } from './schemas/cart.schema';
 import { CartService } from './services/cart.service';
 import { CartController } from './controllers/cart.controller';
+import { ProductModule } from 'src/product/product.module';
 
 @Module({
   imports: [
     AuthModule,
+    ProductModule,
     MongooseModule.forFeature([{ name: Order.name, schema: OrderSchema }, { name: Cart.name, schema: CartSchema }]),
   ],
   providers: [OrderService, CartService],

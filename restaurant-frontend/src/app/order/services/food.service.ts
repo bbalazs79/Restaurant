@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ApiClient } from "src/app/shared/utils/api-client";
-import { Observable, BehaviorSubject } from "rxjs";
-import { map, tap } from "rxjs/operators";
+import { Observable } from "rxjs";
 import { Food } from "../interfaces/food";
 
 @Injectable({

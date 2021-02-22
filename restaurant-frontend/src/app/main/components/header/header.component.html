@@ -62,8 +62,8 @@
         </mat-menu>
       </ng-template>
 
-      <button mat-stroked-button>
-        <mat-icon class="white-icon" aria-hidden="false" aria-label="Cart"
+      <button mat-stroked-button *ngIf="(isLoggedIn$ | async)" routerLink="/carte">
+        <mat-icon class="white-icon" aria-hidden="false" aria-label="Cart" routerLink="/carte"
           >shopping_cart</mat-icon
         >
       </button>

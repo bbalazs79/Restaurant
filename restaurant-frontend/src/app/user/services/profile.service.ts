@@ -10,12 +10,15 @@ export class ProfileService {
 
   constructor(private apiClient: ApiClient) { }
 
+  public getUserId(): Observable<any> {
+    return this.apiClient.get('/profile/getUserId');
+  }
+
   public getProfile(): Observable<any> {
     return this.apiClient.get('/profile');
   }
 
   public updateUserProfile(id:string, data: any){
-    //console.log(data);
     return this.apiClient.put('/profile/'+ id, data);
   }
 

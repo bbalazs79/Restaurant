@@ -30,6 +30,8 @@ export class AuthService {
         tap(response => {
           localStorage.setItem('token', response.token);
           this.isLoggedIn$.next(true);
+        }),
+        tap(() => {
           this.getCurrentUserName().subscribe();
         }),
         map(response => {

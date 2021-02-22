@@ -39,6 +39,7 @@ export class AuthController {
     }
   }
 
+
   // POST /auth/login
   // @Body(): Ha ezzel felannotáljuk a paramétert, akkor a request body tartalma kerül a paraméterbe.
   // Itt egy username és egy password van a DTO interface-jében, tehát ezeket várjuk.
@@ -118,7 +119,6 @@ export class AuthController {
   })
   @HttpCode(HttpStatus.OK)
   public async logout(@Request() request: Request): Promise<void> {
-    console.log('fut!');
     const authorization = extractAuthorizationHeader(request);
     if (!this.authService.logout(authorization.token)) {
       throw new UnauthorizedException();

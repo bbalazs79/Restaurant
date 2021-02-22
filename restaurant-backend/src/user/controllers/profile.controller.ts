@@ -14,6 +14,12 @@ export class ProfileController {
         return user;
     }
 
+    @Get('/getUserId')
+    @UseGuards(AuthGuard)
+    public getUserId(@CurrentUser() user): Promise<any> {
+        return user._id;
+    }
+
     /* @Post('getMyName')
     @UseGuards(AuthGuard)
     public async getMyName(@Body()body: GetProfileDto): Promise<string | boolean> {

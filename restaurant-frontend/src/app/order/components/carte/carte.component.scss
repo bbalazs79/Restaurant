@@ -1,28 +1,72 @@
-.table-food {
-  border-collapse: collapse;
-  width: 100%;
+@import "../../../../common.scss";
 
-  thead {
-    tr {
-      th {
-        padding: 8px;
-        text-align: center;
-        border-bottom: 1px solid #ddd;
-        width: 20%;
+.main-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 4px 4px 5px 0 rgb(0 0 0 / 45%);
+
+  margin: 20px 20px 20px 20px;
+  padding: 10px 20px 10px 20px;
+  background-color: white;
+
+  .main-label{
+    /* margin: auto; */
+    font-family: $app-secondary-font;
+    font-size: 2.5rem;
+
+    margin: 15px 0 15px 0;
+  }
+
+  .table-carte {
+    border-collapse: collapse;
+    width: 100%;
+  
+    thead {
+      tr {
+        th {
+          padding: 8px;
+          text-align: center;
+          border-bottom: 1px solid #ddd;
+          width: 20%;
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          padding: 8px;
+          text-align: center;
+          border-bottom: 1px solid #ddd;
+          width: 20%;
+        }
       }
     }
   }
-  tbody {
-    tr {
-      td {
-        padding: 8px;
-        text-align: center;
-        border-bottom: 1px solid #ddd;
-        width: 20%;
-        img {
-          width: 200px;
-        }
-      }
+}
+
+.bottom-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: 4px 4px 5px 0 rgb(0 0 0 / 45%);
+
+  margin: 20px 20px 20px 20px;
+  padding: 10px 20px 10px 20px;
+  background-color: white;
+
+  .price{
+    display: flex;
+    flex-direction: row;
+    //margin: 0 20px 0 20px;
+
+    h2{
+      font-size: 1.2rem;
+      margin: 0 0 0 20px;
     }
   }
 }
