@@ -41,4 +41,15 @@ export class CartService {
     async updateOrderState(userId: string, orderstate: OrderState): Promise<any>{
         return this.cartModel.updateMany({user: userId},{state: orderstate}).exec();
     }
+    
+    async deleteCartComponent(id: string): Promise<boolean>{
+        /* console.log(id); */
+        const result = !!await this.cartModel.updateMany({_id: id},{state: OrderState.DELETED}).exec();
+        /* console.log(result); */
+        return result;
+    }
+
+    async updateOrderStateWhereStateIsCart(userId: string): Promise<any>{
+        return await this.cartModel.updateMany({ user: userId, state: OrderState.CART }, { state: OrderState.ORDERED });
+    }
 }
