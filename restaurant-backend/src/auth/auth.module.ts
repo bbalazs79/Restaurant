@@ -7,6 +7,8 @@ import { UserToken, UserTokenSchema } from './schemas/user-token.schema';
 import { Role, RoleSchema } from './schemas/role.schema';
 import { RoleController } from './controllers/role.controller';
 import { RoleService } from './services/role.service';
+import { AdminController } from './controllers/admin.controller';
+import { AdminService } from './services/admin.service';
 
 // Authentikációt reprezentáló modul.
 @Module({
@@ -20,8 +22,8 @@ import { RoleService } from './services/role.service';
       { name: Role.name, schema: RoleSchema },
     ]),
   ],
-  controllers: [AuthController, RoleController],
-  providers: [AuthService, RoleService],
+  controllers: [AuthController, RoleController, AdminController],
+  providers: [AuthService, RoleService, AdminService,],
   exports: [AuthService, RoleService],
 })
 export class AuthModule {}

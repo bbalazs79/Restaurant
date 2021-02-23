@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Biztos meg szeretnéd változtatni a profilod adatait?</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Adja meg a jelszavát!</mat-label>
+    <input type="password" matInput [(ngModel)]="checkData.password">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="null">Mégsem</button>
+  <button mat-button (click)="chackPassword()">Ok</button>
+</div>

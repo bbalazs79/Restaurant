@@ -8,8 +8,10 @@ import { Document, Schema as NativeSchema } from 'mongoose';
 /**
  * Role séma.
  */
+export type RoleDocument = Role & Document;
+
 @Schema()
-export class Role extends Document {
+export class Role {
   @Prop({ required: true })
   role: string;
 }

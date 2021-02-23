@@ -13,7 +13,7 @@ const routes: Routes = [
         path: ""
       },
       {
-        path: "carte",
+        path: "productList",
         loadChildren: () =>
           import("../order/order.module").then(m => m.OrderModule)
       },

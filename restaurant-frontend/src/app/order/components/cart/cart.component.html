@@ -1,0 +1,30 @@
+<div class="main-content">
+    <label class="main-label">Kosár</label>
+    <table class="table-cart">
+        <thead>
+            <tr>
+            <th>Termék</th>
+            <th>Ár</th>
+            <th>Mennyiség</th>
+            <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of this.userCart">
+                <td>{{ item.food.name}}</td>
+                <td>{{ item.food.price}}</td>
+                <td>{{ item.count }}</td>
+                <td><button mat-button (click)="deleteCartComponent(item._id)"><mat-icon>delete</mat-icon></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="bottom-content">
+    <div class="price">
+        <h2>Összesen:</h2>
+        <h2>{{this.countPrice}} Ft</h2>
+    </div>
+    <div>
+        <button mat-raised-button>Megrendelem</button>
+    </div>
+</div>

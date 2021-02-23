@@ -18,6 +18,16 @@ body {
   color: white;
 }
 
+.success {
+  background-color: green;
+  color: white;
+}
+
+.warn {
+  background-color: red;
+  color: white;
+}
+
 .secondary-color {
   color: $app-secondary-color;
 }
@@ -57,4 +67,22 @@ body {
 .flex-row {
   display: flex;
   flex-direction: row;
+}
+
+mat-vertical-stepper {
+  .mat-step-label {
+    color: gray !important;
+
+    &-selected {
+      color: black !important;
+    }
+  }
+
+  .mat-step-icon {
+    background-color: gray !important;
+
+    &-selected {
+      background-color: black !important;
+    }
+  }
 }

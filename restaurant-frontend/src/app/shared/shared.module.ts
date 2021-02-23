@@ -45,6 +45,8 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatTreeModule } from "@angular/material/tree";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ArrayListPipe } from "./pipes/array-list.pipe";
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 const materialModules = [
   A11yModule,
@@ -89,7 +91,10 @@ const materialModules = [
   MatTooltipModule,
   MatTreeModule,
   PortalModule,
-  ScrollingModule
+  ScrollingModule,
+  IvyCarouselModule,
+  FlexLayoutModule,
+  MatSnackBarModule,
 ];
 
 @NgModule({

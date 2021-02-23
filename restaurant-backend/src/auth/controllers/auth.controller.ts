@@ -9,6 +9,7 @@ import {
   Request,
   HttpCode,
   HttpStatus,
+  BadRequestException,
 } from '@nestjs/common';
 import { BasicAuthDto } from 'dtos/auth/basic-auth.dto';
 import { AuthService } from '../services/auth.service';
@@ -17,6 +18,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { extractAuthorizationHeader } from '../utils/extract-authorization';
 import { RegistrationDto } from 'dtos/auth/registration.dto';
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { BasicCheckDto } from 'dtos/auth/precheck.dto';
 
 /**
  * Authentikációs végpontok.
@@ -25,10 +27,23 @@ import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @Get()
+  @UseGuards(AuthGuard)
+  public auth(): void{}
+
+  @Post()
+  @UseGuards(AuthGuard)
+  public async checkPassword(@Body() data: BasicCheckDto): Promise<void>{
+    if (!(await this.authService.checkPassword(data))) {
+      throw new BadRequestException('A jelszó helytelen');
+    }
+  }
+
+
   // POST /auth/login
   // @Body(): Ha ezzel felannotáljuk a paramétert, akkor a request body tartalma kerül a paraméterbe.
   // Itt egy username és egy password van a DTO interface-jében, tehát ezeket várjuk.
-  // Az egyes DTO interface-ek a dtos/auth-ban vannak.
+  // Az egyes DTO interface-ek a dtos/auth-ban vannak
   @Post('login')
   @ApiOperation({ summary: 'User login.' })
   @ApiResponse({
@@ -41,6 +56,7 @@ export class AuthController {
       authDto.username,
       authDto.password,
     );
+
     if (!token) {
       // A szabványos HTTP kódokhoz tartozik egy-egy exception.
       // Ha a request kezelésének során egy ilyen HttpException feldobódik,
@@ -51,6 +67,7 @@ export class AuthController {
 
     return {
       token,
+      //String("sdfdsaf"),
     };
   }
 
@@ -67,7 +84,7 @@ export class AuthController {
   })
   @HttpCode(HttpStatus.OK)
   public async registerUser(@Body() regDto: RegistrationDto): Promise<void> {
-    console.log(regDto);
+    //console.log(regDto);
     const result = await this.authService.registerUser(
       regDto.username,
       regDto.password,
@@ -102,7 +119,6 @@ export class AuthController {
   })
   @HttpCode(HttpStatus.OK)
   public async logout(@Request() request: Request): Promise<void> {
-    console.log('fut!');
     const authorization = extractAuthorizationHeader(request);
     if (!this.authService.logout(authorization.token)) {
       throw new UnauthorizedException();

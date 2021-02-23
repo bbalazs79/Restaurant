@@ -5,6 +5,8 @@ import { User } from './user.schema';
 /**
  * Felhasználó token objektum.
  */
+export type UserTokenDocument = UserToken & Document;
+
 @Schema()
 export class UserToken extends Document {
   @Prop({ required: true })

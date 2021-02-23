@@ -4,7 +4,8 @@
   "description": "",
   "main": "restaurant-backend/dist/src/main",
   "scripts": {
-    "postinstall": "cd restaurant-backend && npm install && cd ../restaurant-frontend && npm install"
+    "postinstall": "cd restaurant-backend && npm install && cd ../restaurant-frontend && npm install",
+    "start": "cd restaurant-backend && npm run start:prod"
   },
   "repository": {
     "type": "git",

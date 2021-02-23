@@ -9,6 +9,8 @@ import { Role } from './role.schema';
 /**
  * Felhasználó séma.
  */
+export type UserDocument = User & Document;
+
 @Schema()
 export class User extends Document {
   // Az egyes propertyket @Prop() decoratorral kell ellátni.

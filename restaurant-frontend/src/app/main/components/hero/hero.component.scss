@@ -1,27 +1,32 @@
 @import "../../../../common.scss";
 
 .hero-body {
-  height: 400px;
+  position: relative;
 
   .gfg {
-    height: 400px;
+    height: 100%;
     width: 100%;
     object-fit: cover;
   }
 
-  .logo {
-    text-align: center;
-    position: absolute;
-    font-size: 18px;
-    top: 50px;
-    left: 27%;
-    color: white;
-    height: 400px;
+  .carousel-cell {
+    background-size: 100%;
+
+    $carouselItemCount: 3;
+    @for $i from 1 to $carouselItemCount {
+      &:nth-child(#{$i}) {
+        background-image: url('/assets/item-#{$i}.jpg');
+      }
+    }
   }
 
-  .current-description {
+  .stop-carousel {
     position: absolute;
-    z-index: 1;
+    bottom: 20px;
+    right: 20px;
+  }
+
+  .description {
     height: 380px;
     width: 300px;
     padding: 10px 30px;
