@@ -19,27 +19,21 @@ export class CartComponent implements OnInit {
   }
 
   UserCart(){
-    /* this.profileService.getUserId().pipe(
-      switchMap((response) => 
-        this.cartService.getUserCart(response).pipe(tap(x=>{
-          this.userCart = x;
-        }));
-    )); */
-
-    /* this.profileService.getUserId().pipe(
-      switchMap(response => 
-        this.cartService.getUserCart(response)
-        .pipe(
-          tap(x=> this.userCart = x)
-      ))
-    ).subscribe(); */
-
     this.profileService.getUserId().pipe(
       switchMap((response) => this.cartService.getUserCart(response)),
       tap((response) => {
         this.userCart = response;
       }),
-      map(()=>console.log(this.userCart))
+      /* map(()=> console.log(this.userCart)) */
       ).subscribe();
+  }
+
+  deleteCartComponent(id: string){
+    console.log(id);
+    this.cartService.reoveFromCart(id).subscribe(()=>window.location.reload());
+  }
+
+  placeOrder(){
+    
   }
 }

@@ -19,4 +19,11 @@ export class CartService {
     return this.apiClient.post('/cart', data);
   }
 
+  public reoveFromCart(id:string): Observable<any>{
+    return this.apiClient.get('/cart/deleteCartComponent/'+id);
+  }
+
+  public placeOrder(): Observable<any>{
+    return null;
+  }
 }

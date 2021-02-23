@@ -6,6 +6,7 @@
             <th>Termék</th>
             <th>Ár</th>
             <th>Mennyiség</th>
+            <th></th>
             </tr>
         </thead>
         <tbody>
@@ -13,6 +14,7 @@
                 <td>{{ item.food.name}}</td>
                 <td>{{ item.food.price}}</td>
                 <td>{{ item.count }}</td>
+                <td><button mat-button (click)="deleteCartComponent(item._id)"><mat-icon>delete</mat-icon></button></td>
             </tr>
         </tbody>
     </table>

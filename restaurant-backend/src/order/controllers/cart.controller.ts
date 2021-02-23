@@ -53,4 +53,9 @@ export class CartController {
         return await this.cartService.
         updateOrderState(id,updateCartStateDto.state);
     }
+
+    @Get('/deleteCartComponent/:id')
+    public async deleteCartComponent(@Param('id') id: string): Promise<boolean>{
+        return !!await this.cartService.deleteCartComponent(id);
+    }
 }
