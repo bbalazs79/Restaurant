@@ -1,12 +1,12 @@
 import { Routes, RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
-import { CarteComponent } from "./components/carte/carte.component";
+import { CartComponent } from "./components/cart/cart.component";
 import { ProductListComponent } from "./components/product-list/product-list.component";
 
 const routes: Routes = [
   {
-    component: CarteComponent,
-    path: "carte"
+    component: CartComponent,
+    path: "cart"
   },
   {
     component: ProductListComponent,

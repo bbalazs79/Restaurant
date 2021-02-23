@@ -4,6 +4,9 @@ import { FoodService } from "../../services/food.service";
 import { map, tap } from "rxjs/operators";
 import { BehaviorSubject } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { OrderDialogComponent } from '../order-dialog/order-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product-list',
@@ -13,52 +16,13 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 export class ProductListComponent implements OnInit {
   food: Food[];
   public isLoggedIn$: BehaviorSubject<boolean>;
-  /* ingredient: Ingredients = {
-    name: 'Szósz',
-    allergene: [Allergens.LACTOSE, Allergens.LACTOSE]
-  };
-  ingredient0: Ingredients = {
-    name: 'Alma',
-    allergene: [Allergens.LACTOSE, Allergens.LACTOSE]
-  };
-  ingredient1: Ingredients = {
-    name: 'Sajt',
-    allergene: [Allergens.LACTOSE, Allergens.LACTOSE]
-  }; 
-
-  foods: Food[] = [
-    {
-      imgSource: 'assets/item-1.jpg',
-      name: 'Pizza',
-      price: 1000,
-      ingredients: [this.ingredient, this.ingredient0, this.ingredient1]
-    },
-    {
-      imgSource: 'assets/item-1.jpg',
-      name: 'Palacsinta',
-      price: 1200,
-      ingredients: [this.ingredient]
-    },
-    {
-      imgSource: 'assets/item-1.jpg',
-      name: 'Túrós rétes',
-      price: 390,
-      ingredients: [this.ingredient]
-    },
-    {
-      imgSource: 'assets/item-1.jpg',
-      name: 'Kefír',
-      price: 99,
-      ingredients: [this.ingredient]
-    },
-    {
-      imgSource: 'assets/item-1.jpg',
-      name: 'Sztrapacska',
-      price: 2300,
-      ingredients: [this.ingredient]
-    }
-  ]; */
-  constructor(private foodService: FoodService, private authService: AuthService) {
+  
+  constructor(
+    private foodService: FoodService, 
+    private authService: AuthService,
+    private matDialog: MatDialog,
+    private matSnackBar: MatSnackBar,
+    ) {
     this.isLoggedIn$ = this.authService.isLoggedIn$;
   }
 
@@ -81,4 +45,28 @@ export class ProductListComponent implements OnInit {
       .subscribe();
   }
 
+  openConfirmDialog(food: any) {
+    /* console.log(foodId); */
+    this.matDialog.open(OrderDialogComponent, {
+      data: food,
+    })
+      .afterClosed()
+      .subscribe((result) => {
+        // A result-ban van az az érték, amit a Dialog-ban a close()-nak átadunk
+        if (result) {
+          this.matSnackBar.open('Kosárhoz adva', null,{
+            panelClass: 'success',
+            duration: 4000,
+          });
+        } else if (result === false) {
+          // ha valami hiba van (false)
+          this.matSnackBar.open('Hiba van', null, {
+            panelClass: 'warn',
+            duration: 4000, // ms
+          });
+        } else {
+          // itt null, akkor a cancel-re kattintott
+        }
+      });
+  }
 }

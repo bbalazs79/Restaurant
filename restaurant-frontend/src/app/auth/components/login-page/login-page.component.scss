@@ -21,11 +21,15 @@
   text-align: center;
 }
 
-.login-button{
-  margin: 0 20px 5px 20px;
-
-  &:disabled{
-    background-color: lightgray;
-    color: #000000;
+.button-content{
+  padding: 5px 20px 5px 20px;
+  
+  .login-button{
+    width: 100%;
+  
+    &:disabled{
+      background-color: lightgray;
+      color: #000000;
+    }
   }
 }

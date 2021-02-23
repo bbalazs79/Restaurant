@@ -37,7 +37,7 @@
           </ul>
         </td>
         <td class="cart-column">
-          <button mat-raised-button color="primary" *ngIf="(isLoggedIn$ | async)">
+          <button mat-raised-button color="primary" *ngIf="(isLoggedIn$ | async)" (click)="this.openConfirmDialog(item)">
             <mat-icon class="white-icon" aria-hidden="false" aria-label="Cart"
               >shopping_cart</mat-icon
             >

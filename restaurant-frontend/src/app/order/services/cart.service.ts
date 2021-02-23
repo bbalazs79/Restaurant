@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { ApiClient } from 'src/app/shared/utils/api-client';
+import { CheckOrderDto } from '../interfaces/order-check.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CarteService {
+export class CartService {
 
   constructor(private apiClient: ApiClient) { }
 
-  public getUserCarte(id: string): Observable<any>{
+  public getUserCart(id: string): Observable<any>{
     console.log(id);
     return this.apiClient.get('/cart/'+ id);
   }
+
+  public addToCart(data: CheckOrderDto):Observable<any> {
+    return this.apiClient.post('/cart', data);
+  }
+
 }

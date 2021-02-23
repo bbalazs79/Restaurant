@@ -1,9 +1,8 @@
-import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { ProfileService } from '../../services/profile.service';
 import { PrecheckProfileDialogComponent } from '../precheck-profile-dialog/precheck-profile-dialog.component';
 
@@ -51,7 +50,7 @@ export class ProfileComponent implements OnInit {
     })
       .afterClosed()
       .subscribe((result) => {
-        // A result-ban van az az érték, amit a Dialog-ban a close()-nak átadtál
+        // A result-ban van az az érték, amit a Dialog-ban a close()-nak átadunk
         if (result) {
           this.changeProfile();
         } else if (result === false) {

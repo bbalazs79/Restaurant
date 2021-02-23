@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Hozzáadás a kosárhoz.</h1>
+<label class="product-label">Termék: {{ product.name }}</label>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Mennyiség:</mat-label>
+        <input type="number" matInput [(ngModel)]="productCount">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="null">Mégsem</button>
+  <button mat-button (click)="addToCart()">Hozzáad</button>
+</div>

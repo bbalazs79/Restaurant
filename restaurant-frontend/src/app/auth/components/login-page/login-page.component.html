@@ -17,14 +17,18 @@
       <input matInput type="password" formControlName="password" />
     </mat-form-field>
   </div>
-  </form>
-  <button
+  <div class="button-content">
+    <button
     mat-raised-button
     class="login-button"
     color="primary"
     (click)="onClickLogin()"
     [disabled]="loginForm.invalid"
+    type="submit"
   >
     Bejelentkezés
   </button>
+  </div>
+  </form>
+  
 </div>
