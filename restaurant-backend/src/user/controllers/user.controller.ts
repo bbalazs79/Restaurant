@@ -42,7 +42,7 @@ export class UserController {
     };
   }
 
-  @Get('getUsers')
+  @Get('')
   @UseGuards(AuthGuard, RolesGuard)
   @Roles('admin')
   public async getUsers(): Promise<User[]> {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../../services/auth.service";
-import { tap } from "rxjs/operators";
+import { tap, withLatestFrom } from "rxjs/operators";
 import {
   FormGroup,
   FormControl,
@@ -36,8 +36,7 @@ export class LoginPageComponent implements OnInit {
     this.authService
       .login(this.loginForm.value.username, this.loginForm.value.password)
       .pipe(
-        tap(token => {
-          localStorage.setItem("token", token);
+        tap(() => {
           this.router.navigateByUrl("/");
         })
       )

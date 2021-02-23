@@ -24,6 +24,6 @@ export class CartService {
   }
 
   public placeOrder(): Observable<any>{
-    return null;
+    return this.apiClient.put('/cart/placeOrder');
   }
 }

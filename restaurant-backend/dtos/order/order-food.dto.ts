@@ -25,4 +25,8 @@ export interface ParamOrderDto{
     /* userId: Schema.Types.ObjectId; */
     userId: string;
     deliveryAddress: string;
+    // products: {
+    //     productId: string;
+    //     quantity: number;
+    // }[];
 }

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ApiClient } from "src/app/shared/utils/api-client";
 import { Observable, BehaviorSubject, EMPTY } from "rxjs";
-import { catchError, map, tap } from "rxjs/operators";
+import { catchError, map, switchMap, tap } from "rxjs/operators";
 import { HttpHeaders } from "@angular/common/http";
 
 @Injectable({
@@ -27,16 +27,11 @@ export class AuthService {
         password
       })
       .pipe(
-        tap(response => {
+        switchMap(response => {
           localStorage.setItem('token', response.token);
           this.isLoggedIn$.next(true);
+          return this.getCurrentUserName();
         }),
-        tap(() => {
-          this.getCurrentUserName().subscribe();
-        }),
-        map(response => {
-          return response.token;
-        })
       );
   }
 
@@ -56,7 +51,7 @@ export class AuthService {
       .get<void>("/auth/logout")
       .pipe(
         tap(() => this.isLoggedIn$.next(false)),
-        map(()=> localStorage.setItem('token',''))
+        map(()=> localStorage.removeItem('token'))
       );
   }
 

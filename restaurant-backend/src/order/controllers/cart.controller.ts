@@ -66,9 +66,9 @@ export class CartController {
         return !!await this.cartService.deleteCartComponent(id);
     }
 
-    @Get('/placeOrder')
+    @Put('/placeOrder')
     @UseGuards(AuthGuard)
-    public /* async  */placeOrder(@CurrentUser() user: User)/* : Promise<any> */{
-        return /* await */ /* this.cartService.updateOrderStateWhereStateIsCart(user._id); */ user._id;
+    public placeOrder(@CurrentUser() user: User): Promise<any> {
+        return this.cartService.updateOrderStateWhereStateIsCart(user._id);
     }
 }
