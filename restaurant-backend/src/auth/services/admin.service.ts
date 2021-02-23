@@ -21,7 +21,7 @@ export class AdminService {
     }
 
     const response = await this.roleModel.findOne({ role: role });
-    console.log(response);
+    /* console.log(response); */
     user.role = response._id;
     if(!response){
       throw new NotFoundException();

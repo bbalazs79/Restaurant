@@ -39,7 +39,7 @@ export class ProfileController {
     @Put(':id')
     @UseGuards(AuthGuard)
     public async updateProfile(@Param('id') id: string, @Body() body: Partial<User>): Promise<User | boolean> {
-        console.log(body);
+        /* console.log(body); */
         const user =  await this.profileService.updateUserProfile(id,body);
         if(!user){
             return false;

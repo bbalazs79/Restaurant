@@ -11,7 +11,7 @@ export class CartService {
   constructor(private apiClient: ApiClient) { }
 
   public getUserCart(id: string): Observable<any>{
-    console.log(id);
+    /* console.log(id); */
     return this.apiClient.get('/cart/'+ id);
   }
 
