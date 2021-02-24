@@ -1,4 +1,6 @@
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { map, switchMap, tap } from "rxjs/operators";
 import { ProfileService } from "src/app/user/services/profile.service";
 import { CartService } from "../../services/cart.service";
@@ -10,9 +12,19 @@ import { CartService } from "../../services/cart.service";
 })
 export class CartComponent implements OnInit {
   public userCart: any;
-  public countPrice: number = 30000;
-  constructor(private cartService: CartService, private profileService: ProfileService) {
-  }
+  public countPrice: number = 0;
+  public deliveryForm: FormGroup;
+  public address: string;
+  constructor(
+    private cartService: CartService, 
+    private profileService: ProfileService, 
+    private fb: FormBuilder,
+    private matSnackBar: MatSnackBar,
+    ) {
+      this.deliveryForm = this.fb.group({
+        deliveryAddress: ["", [Validators.required]],
+      });
+    }
 
   ngOnInit(): void {
     this.UserCart();
@@ -22,7 +34,11 @@ export class CartComponent implements OnInit {
     this.profileService.getUserId().pipe(
       switchMap((response) => this.cartService.getUserCart(response)),
       tap((response) => {
+        console.log(response);
         this.userCart = response;
+        response.forEach(element => {
+          this.countPrice += element.count * element.food.price;
+        });
       }),
       /* map(()=> console.log(this.userCart)) */
       ).subscribe();
@@ -34,6 +50,24 @@ export class CartComponent implements OnInit {
   }
 
   placeOrder(){
-    
+    this.profileService.getUserId().pipe(
+      switchMap(
+        (response)=>this.cartService.placeOrder({userId: response, deliveryAddress: this.address})
+        .pipe(
+          tap(response => {
+            if(response){
+              this.matSnackBar.open('Köszönjük a rendelést!', null,{
+                panelClass: 'success',
+                duration: 4000,
+              });
+            }else{
+              this.matSnackBar.open('Hiba történt.', null, {
+                panelClass: 'warn',
+                duration: 4000, // ms
+              });
+            }
+          }))
+        )
+    ).subscribe();
   }
 }

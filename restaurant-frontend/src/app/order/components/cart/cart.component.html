@@ -19,12 +19,23 @@
         </tbody>
     </table>
 </div>
-<div class="bottom-content">
-    <div class="price">
-        <h2>Összesen:</h2>
-        <h2>{{this.countPrice}} Ft</h2>
+
+<form [formGroup]="deliveryForm" class="deliver-data" fxLayout="column " fxLayoutAlign="center">
+    <p class="deliver">Szállítási adatok</p>
+    <mat-form-field>
+        <mat-label>Szállítási cím</mat-label>
+        <input type="text" matInput formControlName="deliveryAddress" [(ngModel)]="address"/>
+        <mat-error *ngIf="deliveryForm.get('deliveryAddress').errors?.required"
+        >A mező kitöltése kötelező!</mat-error>
+    </mat-form-field>
+    <div class="bottom-content">
+        <div class="price">
+            <h2>Összesen:</h2>
+            <h2>{{this.countPrice}} Ft</h2>
+        </div>
+        <div>
+            <button class="send-order" mat-raised-button [disabled]="deliveryForm.invalid" (click)="placeOrder()">Megrendelem</button>
+        </div>
     </div>
-    <div>
-        <button mat-raised-button>Megrendelem</button>
-    </div>
-</div>
+</form>
+

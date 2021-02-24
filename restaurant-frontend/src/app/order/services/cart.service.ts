@@ -23,7 +23,7 @@ export class CartService {
     return this.apiClient.get('/cart/deleteCartComponent/'+id);
   }
 
-  public placeOrder(): Observable<any>{
-    return this.apiClient.put('/cart/placeOrder');
+  public placeOrder(data): Observable<boolean>{
+    return this.apiClient.post('/order', data);
   }
 }

@@ -4,7 +4,7 @@
     <div style="margin: 0 20px 0 20px;" fxLayout="column wrap">
     <mat-form-field>
       <mat-label>Felhasználónév</mat-label>
-      <input matInput type="text" formControlName="username" />
+      <input matInput type="text" formControlName="username"/>
       <mat-error *ngIf="loginForm.get('username').errors?.required"
         >A mező kitöltése kötelező!</mat-error
       >

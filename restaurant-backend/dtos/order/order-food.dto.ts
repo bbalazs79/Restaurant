@@ -23,7 +23,7 @@ export interface CreateOrderDto{
 
 export interface ParamOrderDto{
     /* userId: Schema.Types.ObjectId; */
-    userId: string;
+    userId?: string;
     deliveryAddress: string;
     // products: {
     //     productId: string;
