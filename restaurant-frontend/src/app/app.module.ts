@@ -7,6 +7,7 @@ import { SharedModule } from "./shared/shared.module";
 import { MainModule } from "./main/main.module";
 import { UserModule } from "./user/user.module";
 import { OrderModule } from "./order/order.module";
+import { AdminModule } from "./admin/admin.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { OrderModule } from "./order/order.module";
     MainModule,
     UserModule,
     OrderModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

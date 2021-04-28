@@ -3,6 +3,8 @@ import { ApiClient } from "src/app/shared/utils/api-client";
 import { Observable, BehaviorSubject, EMPTY } from "rxjs";
 import { catchError, map, switchMap, tap } from "rxjs/operators";
 import { HttpHeaders } from "@angular/common/http";
+import { User } from "src/app/user/interfaces/user.interface";
+import { ProfileService } from "src/app/user/services/profile.service";
 
 @Injectable({
   providedIn: "root"
@@ -10,8 +12,10 @@ import { HttpHeaders } from "@angular/common/http";
 export class AuthService {
   public isLoggedIn$ = new BehaviorSubject(false);
   public currUserName$ = new BehaviorSubject('Anonim Felhasználó');
+  public currentUser$: BehaviorSubject<User>;
+  public userPremission$: BehaviorSubject<string> = new BehaviorSubject('user');
 
-  constructor(private apiClient: ApiClient) {
+  constructor(private apiClient: ApiClient, private profileService: ProfileService) {
     if(localStorage.getItem('token')){
       this.tryAuth().subscribe();
       this.getCurrentUserName().subscribe();
@@ -32,6 +36,17 @@ export class AuthService {
           this.isLoggedIn$.next(true);
           return this.getCurrentUserName();
         }),
+        tap(()=>{
+          this.profileService.getProfile().pipe(
+            tap((response)=>{
+              //console.log(response.role.role);
+              this.userPremission$.next(response.role.role);
+              console.log(this.userPremission$.value);
+              this.currentUser$ = response;
+              //console.log(this.currentUser$);
+            })
+          ).subscribe();
+        })
       );
   }
 

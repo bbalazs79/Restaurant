@@ -7,8 +7,8 @@ import { BasicCheckDto } from '../interfaces/checkPass.interface';
   providedIn: 'root'
 })
 export class ProfileService {
-
-  constructor(private apiClient: ApiClient) { }
+  constructor(private apiClient: ApiClient) {
+  }
 
   public getUserId(): Observable<any> {
     return this.apiClient.get('/profile/getUserId');

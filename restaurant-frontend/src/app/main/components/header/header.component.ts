@@ -10,13 +10,15 @@ import { BehaviorSubject } from "rxjs";
 export class HeaderComponent implements OnInit {
   public isLoggedIn$: BehaviorSubject<boolean>;
   public currUserName$: BehaviorSubject<string>;
+  public userPremission$: BehaviorSubject<string>;
 
-  constructor(private authService: AuthService) {
+  constructor(public authService: AuthService) {
     this.isLoggedIn$ = this.authService.isLoggedIn$;
     this.currUserName$ = this.authService.currUserName$;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   onClickLogout() {
     this.authService.logout().subscribe();

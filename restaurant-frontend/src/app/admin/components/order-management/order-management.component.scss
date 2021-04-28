@@ -1,0 +1,40 @@
+.order {
+    border-collapse: collapse;
+    width: 100%;
+  
+    thead {
+      tr {
+        th, ul {
+          padding: 8px;
+          text-align: center;
+          border-bottom: 1px solid #ddd;
+          width: 20%;
+        }
+      }
+    }
+    tbody {
+      tr {
+        td {
+          padding: 8px;
+          text-align: center;
+          border-bottom: 1px solid #ddd;
+          width: 20%;
+          img {
+            width: 200px;
+          }
+        }
+      }
+    }
+  }
+
+  .simple-list {
+    list-style-type: none;
+    padding: 0;
+  
+    &.inline-elements {
+      li {
+        display: inline-block;
+        white-space: pre-wrap;
+      }
+    }
+  }

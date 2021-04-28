@@ -6,11 +6,7 @@ export type OrderDocument = Order & Document;
 
 @Schema()
 export class Order{
-  @Prop([{
-    type: NativeSchema.Types.ObjectId,
-    required: true,
-    ref: 'Cart',
-  }])
+  @Prop([{ type: NativeSchema.Types.ObjectId, require: true, ref: 'Cart',}])
   Order: Cart[];
 
   @Prop({ required: true })

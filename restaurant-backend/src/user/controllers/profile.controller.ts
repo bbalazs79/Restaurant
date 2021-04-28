@@ -11,7 +11,7 @@ export class ProfileController {
     @Get('')
     @UseGuards(AuthGuard)
     public getProfile(@CurrentUser() user): Promise<User> {
-        return user;
+        return this.profileService.getCurrentUserProfile(user.username);
     }
 
     @Get('/getUserId')

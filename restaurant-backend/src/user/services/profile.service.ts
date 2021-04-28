@@ -10,7 +10,8 @@ export class ProfileService {
     constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
     public async getCurrentUserProfile(username:string): Promise<User>{
-        return await this.userModel.findOne({username: username}).exec();
+        const user = await this.userModel.findOne({username: username}).populate('role').exec(); 
+        return user;
     }
 
     public async getFullname(username: string): Promise<string | boolean>{

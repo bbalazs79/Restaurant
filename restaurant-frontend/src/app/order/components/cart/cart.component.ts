@@ -1,7 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { BehaviorSubject } from "rxjs";
 import { map, switchMap, tap } from "rxjs/operators";
+import { AuthService } from "src/app/auth/services/auth.service";
+import { User } from "src/app/user/interfaces/user.interface";
 import { ProfileService } from "src/app/user/services/profile.service";
 import { CartService } from "../../services/cart.service";
 
@@ -15,15 +18,20 @@ export class CartComponent implements OnInit {
   public countPrice: number = 0;
   public deliveryForm: FormGroup;
   public address: string;
+  public currentUser$: BehaviorSubject<User>;
+
   constructor(
     private cartService: CartService, 
-    private profileService: ProfileService, 
+    private profileService: ProfileService,
+    private authService: AuthService,
     private fb: FormBuilder,
     private matSnackBar: MatSnackBar,
     ) {
+      this.currentUser$ = this.authService.currentUser$;
       this.deliveryForm = this.fb.group({
         deliveryAddress: ["", [Validators.required]],
       });
+      
     }
 
   ngOnInit(): void {
@@ -66,6 +74,7 @@ export class CartComponent implements OnInit {
                 duration: 4000, // ms
               });
             }
+            window.location.reload();
           }))
         )
     ).subscribe();

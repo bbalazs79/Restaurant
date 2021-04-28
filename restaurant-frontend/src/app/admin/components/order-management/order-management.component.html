@@ -1,0 +1,79 @@
+<div style="margin: 5%; background-color: #ffffff;">
+    <table class="order">
+        <thead>
+            <tr>
+              <th>Rendelés</th>
+              <th>Rendelést leadta</th>
+              <th>Kiszállítási cím</th>
+              <th>Állapot</th>
+              <th></th>
+            </tr>
+          </thead>
+    
+          <tbody>
+            <tr *ngFor="let orders of this.orders; index as i;">
+                <td *ngIf="orders.Order[0].state === 'Megrendelve'">
+                    <ul class="simple-list">
+                        <li *ngFor="let x of orders.Order">
+                            {{x.food.name}}
+                        </li>
+                    </ul>
+                </td>
+                <td *ngIf="orders.Order[0].state === 'Megrendelve'" >
+                    {{orders.Order[0].user.first_name}} {{orders.Order[0].user.last_name}}
+                </td>  
+                <td *ngIf="orders.Order[0].state === 'Megrendelve'" >
+                    {{orders.deliveryAddress}}
+                </td>  
+                <td *ngIf="orders.Order[0].state === 'Megrendelve'" >
+                    {{orders.Order[0].state}}
+                </td>
+                <td *ngIf="orders.Order[0].state === 'Megrendelve'" >
+                    <button mat-raised-button (click)="orderReady(orders.Order[0]._id)">
+                        Elkészült
+                    </button>
+                </td>       
+            </tr>
+          </tbody>
+    </table>
+</div>
+
+<div style="margin: 5%; background-color: #ffffff;">
+    <table class="order">
+        <thead>
+            <tr>
+              <th>Rendelés</th>
+              <th>Rendelést leadta</th>
+              <th>Kiszállítási cím</th>
+              <th>Állapot</th>
+              <th></th>
+            </tr>
+          </thead>
+    
+          <tbody>
+            <tr *ngFor="let orders of this.orders;">
+                <td *ngIf="orders.Order[0].state === 'Elkészült'">
+                    <ul class="simple-list">
+                        <li *ngFor="let x of orders.Order">
+                            {{x.food.name}}
+                        </li>
+                    </ul>
+                </td>
+                <td *ngIf="orders.Order[0].state === 'Elkészült'" >
+                    {{orders.Order[0].user.first_name}} {{orders.Order[0].user.last_name}}
+                </td>  
+                <td *ngIf="orders.Order[0].state === 'Elkészült'" >
+                    {{orders.deliveryAddress}}
+                </td>  
+                <td *ngIf="orders.Order[0].state === 'Elkészült'" >
+                    {{orders.Order[0].state}}
+                </td>
+                <td *ngIf="orders.Order[0].state === 'Elkészült'" >
+                    <button mat-raised-button (click)="deleteOrder(orders.Order[0]._id)">
+                        Törlés
+                    </button>
+                </td>       
+            </tr>
+          </tbody>
+    </table>
+</div>

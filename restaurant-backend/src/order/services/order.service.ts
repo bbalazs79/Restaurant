@@ -29,7 +29,7 @@ export class OrderService {
       deliveryTime: new Date(),
     };
 
-    await this.cartModel.updateMany({ user: orderParams.userId }, {
+    await this.cartModel.updateMany({ user: orderParams.userId, state: OrderState.CART }, {
       state: OrderState.ORDERED,
     });
 
@@ -39,7 +39,7 @@ export class OrderService {
   }
 
   public findAll(): Promise<any> {
-    return this.orderModel.find().exec();
+    return this.orderModel.find().populate({path:'Order', populate: [{path: 'food'},{path:'user'}]}).exec();
   }
 
   public async findById(id?: string): Promise<any> {
@@ -50,5 +50,17 @@ export class OrderService {
             rolename: result.role, 
             roleId: result._id
         }; */
+  }
+
+  public async orderReady(cartId: string){
+    await this.cartModel.updateOne({ _id: cartId }, {
+      state: OrderState.READY,
+    });
+  }
+
+  public async deleteOrder(cartId: string){
+    await this.cartModel.updateOne({ _id: cartId }, {
+      state: OrderState.DELETED,
+    });
   }
 }
