@@ -62,7 +62,7 @@
         </mat-menu>
       </ng-template>
       
-      <button mat-stroked-button *ngIf="(isLoggedIn$ | async)" class="white-btn" routerLink="/admin/order">
+      <button mat-stroked-button *ngIf="(isLoggedIn$ | async) && (userPremission$ | async).includes('admin')" class="white-btn" routerLink="/admin/order">
         Admin
       </button>
 
